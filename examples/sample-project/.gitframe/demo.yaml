@@ -1,0 +1,53 @@
+# GitFrame Demo Scenario
+start_url: "http://localhost:8080"
+steps:
+  - id: open-home
+    action: goto
+    url: "/"
+    caption: "GitFrame 샘플 대시보드에 접속합니다"
+    
+  - id: wait-page
+    action: pause
+    milliseconds: 1000
+    
+  - id: verify-title
+    action: assertVisible
+    selector:
+      role: "heading"
+      name: "GitFrame Sample Form"
+    caption: "대시보드 화면이 성공적으로 활성화되었는지 확인합니다"
+    
+  - id: enter-user
+    action: fill
+    selector:
+      placeholder: "Enter username..."
+    value: "DemoUser"
+    caption: "사용자 이름 입력창에 'DemoUser'를 기입합니다"
+    
+  - id: enter-msg
+    action: fill
+    selector: "#message"
+    value: "GitFrame CLI is executing this automated playback!"
+    caption: "보낼 설명 메시지를 텍스트 필드에 작성합니다"
+    
+  - id: click-btn
+    action: click
+    selector:
+      role: "button"
+      name: "Submit Action"
+    caption: "제출 버튼을 클릭하여 폼 데이터를 제출합니다"
+    
+  - id: wait-result
+    action: waitFor
+    selector: "#result-box"
+    
+  - id: check-success-text
+    action: assertText
+    selector: "#result-box"
+    text: "Success!"
+    caption: "화면에 정상 처리 완료 문구가 나타나는지 검증합니다"
+    
+  - id: final-screen
+    action: screenshot
+    name: "submit-screenshot"
+    caption: "동작 완료 상태의 화면을 최종 캡처하여 저장합니다"
