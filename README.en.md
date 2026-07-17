@@ -202,6 +202,7 @@ gitframe
 
 - **Example file**: [examples/demo-scenario.yaml](examples/demo-scenario.yaml)
 - **Detailed usage guide**: [docs/gitframe_guide.en.md](docs/gitframe_guide.en.md)
+- **🍎 macOS Setup Guide**: [docs/setup-macos.en.md](docs/setup-macos.en.md)
 - **🤖 AI Agent guide**: [docs/ai-agent-guide.en.md](docs/ai-agent-guide.en.md)
 
 ### Supported Actions

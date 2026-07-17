@@ -203,6 +203,7 @@ gitframe
 자세한 시나리오 작성 문법은 아래를 참고하세요.
 - **예제 파일**: [examples/demo-scenario.yaml](examples/demo-scenario.yaml)
 - **상세 사용 가이드**: [docs/gitframe_guide.md](docs/gitframe_guide.md)
+- **🍎 macOS 설치 가이드**: [docs/setup-macos.md](docs/setup-macos.md)
 - **🤖 AI 에이전트 활용 가이드**: [docs/ai-agent-guide.md](docs/ai-agent-guide.md)
 
 ### 지원 액션 (Actions)
