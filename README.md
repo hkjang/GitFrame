@@ -9,6 +9,8 @@
 [![Playwright](https://img.shields.io/badge/Powered%20by-Playwright-1aa260)](https://playwright.dev)
 [![FFmpeg](https://img.shields.io/badge/Video%20by-FFmpeg-007808)](https://ffmpeg.org)
 
+**한국어** | [English](README.en.md)
+
 </div>
 
 ---
