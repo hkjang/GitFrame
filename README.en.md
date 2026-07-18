@@ -24,6 +24,9 @@ The following are ~3-minute demo videos **fully auto-generated** by GitFrame CLI
 | **SQLON Operations Platform** | AI Database unified ops platform — 18-screen playback (sessions, workloads, security, DBA, Text2SQL, etc.) | [▶️ Watch](https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/sqlon-demo.mp4) |
 | **JAMYPG Operations Platform** | PostgreSQL NL2SQL unified ops platform — 18-screen playback (DBA Copilot, OpenMetadata, quality gates, etc.) | [▶️ Watch](https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/jamypg-demo.mp4) |
 | **Vibe Coders Gateway** | AI coding proxy gateway — 18-screen playback (MCP routing, Red Team, cost dashboard, etc.) | [▶️ Watch](https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/vibe-coders-demo.mp4) |
+| **AutoForge Robotics** | Robotics process control & dashboard — roadmap tracking and automation monitoring demo | [▶️ Watch](https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/autoforge-demo.mp4) |
+| **AgeForge BioOS** | Biological aging digital twin platform — 15-view iteration and simulation demo | [▶️ Watch](https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/ageforge-demo.mp4) |
+
 
 > All videos are rendered at `1440×900`, 30fps, with subtitles — generated with **a single GitFrame command**.
 

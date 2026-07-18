@@ -24,6 +24,9 @@
 | **SQLON Operations Platform** | AI Database 통합 운영 플랫폼 — 18개 화면 플레이백 (세션 관리, 워크로드, 보안, DBA, Text2SQL 등) | [▶️ 영상 보기](https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/sqlon-demo.mp4) |
 | **JAMYPG Operations Platform** | PostgreSQL NL2SQL 통합 운영 플랫폼 — 18개 화면 플레이백 (DBA 코파일럿, OpenMetadata, 품질 게이트 등) | [▶️ 영상 보기](https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/jamypg-demo.mp4) |
 | **Vibe Coders Gateway** | AI 코딩 프록시 게이트웨이 — 18개 화면 플레이백 (MCP 라우팅, Red Team, 비용 대시보드 등) | [▶️ 영상 보기](https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/vibe-coders-demo.mp4) |
+| **AutoForge Robotics** | 로보틱스 공정 제어 및 대시보드 — 로드맵 추적 및 자동화 모니터링 데모 | [▶️ 영상 보기](https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/autoforge-demo.mp4) |
+| **AgeForge BioOS** | 노화 디지털 트윈 및 개입 설계 플랫폼 — 15개 뷰 순환 및 시뮬레이션 데모 | [▶️ 영상 보기](https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/ageforge-demo.mp4) |
+
 
 > 모든 영상은 `1440×900` 해상도, 30fps, 한글 자막 포함 / 별도의 화면 캡처 프로그램 없이 **GitFrame 단 하나의 명령어**로 생성되었습니다.
 

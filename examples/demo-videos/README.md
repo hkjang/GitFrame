@@ -8,6 +8,9 @@
 | `sqlon-demo.mp4` | SQLON Operations Platform (Go Web MCP Server) - AI Database 통합 운영 플랫폼 18개 화면 데모 | 1440×900 | 약 3분 |
 | `jamypg-demo.mp4` | JAMYPG Operations Platform (Go Web MCP Server) - PostgreSQL NL2SQL 통합 운영 플랫폼 18개 화면 데모 | 1440×900 | 약 3분 |
 | `vibe-coders-demo.mp4` | Vibe Coders Gateway (Go AI Coding Proxy Gateway) - AI 코딩 게이트웨이 운영 관리 18개 화면 데모 | 1440×900 | 약 3분 |
+| `autoforge-demo.mp4` | AutoForge Control Panel (Node/React Platform) - 로보틱스 공정 제어 및 로드 맵 모니터링 데모 | 1440×900 | 약 2분 |
+| `ageforge-demo.mp4` | AgeForge BioOS (Vite/React Platform) - 노화 디지털 트윈 및 프로토콜 관리 플랫폼 15개 화면 데모 | 1440×1400 | 약 2분 |
+
 
 ---
 
