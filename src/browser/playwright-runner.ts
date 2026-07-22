@@ -139,8 +139,13 @@ export async function runPlaywrightScenario(
           case 'click': {
             if (!step.selector) throw new Error('Click action requires a selector');
             const loc = resolveLocator(page, step.selector).first();
-            await loc.waitFor({ state: 'visible', timeout: 10000 });
-            await loc.click();
+            try {
+              await loc.waitFor({ state: 'visible', timeout: step.optional ? 5000 : 10000 });
+              await loc.click();
+            } catch (e) {
+              if (!step.optional) throw e;
+              logger.warn(`Optional click step ${stepId} skipped: element not visible`);
+            }
             break;
           }
           case 'fill': {
@@ -209,18 +214,51 @@ export async function runPlaywrightScenario(
             if (!step.selector) throw new Error('dragAndDrop requires a selector');
             const loc = resolveLocator(page, step.selector).first();
             await loc.waitFor({ state: 'visible', timeout: 10000 });
-            const box = await loc.boundingBox();
-            if (!box) throw new Error('Could not find bounding box for selector');
-            
-            const startX = box.x + (step.startX !== undefined ? step.startX : box.width * 0.2);
-            const startY = box.y + (step.startY !== undefined ? step.startY : box.height * 0.2);
-            const endX = box.x + (step.endX !== undefined ? step.endX : box.width * 0.8);
-            const endY = box.y + (step.endY !== undefined ? step.endY : box.height * 0.8);
-            
-            await page.mouse.move(startX, startY);
-            await page.mouse.down();
-            await page.mouse.move(endX, endY, { steps: 10 });
-            await page.mouse.up();
+            // Resolve selector to a plain CSS string for page.evaluate
+            const cssSelector = typeof step.selector === 'string' ? step.selector : (step.selector as any).css || '#xv-svg';
+            // Use JS-dispatched mouse events to fire at the SVG's internal coordinate system,
+            // bypassing scroll offset issues and .xv-dot class guards.
+            await page.evaluate((sel) => {
+              const svg = document.querySelector(sel) as SVGSVGElement | null;
+              if (!svg) throw new Error('SVG not found: ' + sel);
+
+              const svgBox = svg.getBoundingClientRect();
+              // Start from bottom-left empty padding area
+              const startClientX = svgBox.left + svgBox.width * 0.05;
+              const startClientY = svgBox.top  + svgBox.height * 0.92;
+              // End near top-right corner to sweep through most dots
+              const endClientX   = svgBox.left + svgBox.width * 0.95;
+              const endClientY   = svgBox.top  + svgBox.height * 0.08;
+
+              function fire(type: string, clientX: number, clientY: number, target: EventTarget) {
+                target.dispatchEvent(new MouseEvent(type, {
+                  bubbles: true, cancelable: true,
+                  clientX, clientY,
+                  buttons: type === 'mouseup' ? 0 : 1,
+                  button: 0,
+                }));
+              }
+
+              // mousedown on SVG background (not on a dot)
+              fire('mousedown', startClientX, startClientY, svg);
+
+              // Interpolate mousemove on window (that's where the handler is attached)
+              const steps = 20;
+              for (let i = 1; i <= steps; i++) {
+                const cx = startClientX + (endClientX - startClientX) * (i / steps);
+                const cy = startClientY + (endClientY - startClientY) * (i / steps);
+                window.dispatchEvent(new MouseEvent('mousemove', {
+                  bubbles: true, cancelable: true, clientX: cx, clientY: cy, buttons: 1
+                }));
+              }
+
+              // mouseup on window
+              window.dispatchEvent(new MouseEvent('mouseup', {
+                bubbles: true, cancelable: true,
+                clientX: endClientX, clientY: endClientY, buttons: 0, button: 0
+              }));
+            }, cssSelector);
+            await page.waitForTimeout(800);
             break;
           }
           default:

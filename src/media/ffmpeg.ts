@@ -225,6 +225,22 @@ export async function renderMergedVideo(
     await runFfmpeg(thumbnailArgs, logFilePath, outputDir);
     logger.info(`Thumbnail extracted: ${path.join(outputDir, thumbnailFilename)}`);
 
+    // 7. Generate GIF
+    logger.info('Generating high-quality demo GIF animation...');
+    const gifFilename = `${projectName}.gif`;
+    const gifArgs = [
+      '-y',
+      '-i', finalVideoFilename,
+      '-vf', 'fps=12,scale=800:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse',
+      gifFilename
+    ];
+    try {
+      await runFfmpeg(gifArgs, logFilePath, outputDir);
+      logger.info(`Final merged GIF created: ${path.join(outputDir, gifFilename)}`);
+    } catch (gifErr: any) {
+      logger.warn(`GIF rendering failed: ${gifErr.message}. Skipping GIF output.`);
+    }
+
   } finally {
     // Cleanup intermediate video files
     const cleanFile = (file: string) => {

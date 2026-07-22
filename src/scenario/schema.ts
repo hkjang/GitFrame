@@ -26,6 +26,7 @@ export interface ScenarioStep {
   startY?: number;
   endX?: number;
   endY?: number;
+  optional?: boolean;
 }
 
 export interface Scenario {
