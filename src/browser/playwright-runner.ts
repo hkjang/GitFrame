@@ -133,7 +133,12 @@ export async function runPlaywrightScenario(
           case 'goto': {
             const destUrl = step.url ? (step.url.startsWith('http') ? step.url : new URL(step.url, startUrl).toString()) : startUrl;
             logger.info(`Navigating to ${destUrl}`);
-            await page.goto(destUrl, { waitUntil: 'load' });
+            try {
+              await page.goto(destUrl, { waitUntil: 'load' });
+            } catch (e) {
+              if (!step.optional) throw e;
+              logger.warn(`Optional goto step ${stepId} skipped: ${(e as Error).message}`);
+            }
             break;
           }
           case 'click': {
