@@ -24,7 +24,7 @@ export function parseScenario(filePath: string): Scenario {
       throw new ValidationError('Scenario steps must be an array');
     }
 
-    const validActions = ['goto', 'click', 'fill', 'pause', 'assertVisible', 'assertText', 'waitFor', 'screenshot'];
+    const validActions = ['goto', 'click', 'fill', 'pause', 'assertVisible', 'assertText', 'waitFor', 'screenshot', 'scroll', 'dragAndDrop'];
     for (let i = 0; i < parsed.steps.length; i++) {
       const step = parsed.steps[i];
       if (!step || typeof step !== 'object') {

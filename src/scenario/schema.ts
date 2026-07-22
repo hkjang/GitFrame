@@ -12,7 +12,7 @@ export type SelectorType = string | StructuredSelector;
 
 export interface ScenarioStep {
   id?: string;
-  action: 'goto' | 'click' | 'fill' | 'pause' | 'assertVisible' | 'assertText' | 'waitFor' | 'screenshot';
+  action: 'goto' | 'click' | 'fill' | 'pause' | 'assertVisible' | 'assertText' | 'waitFor' | 'screenshot' | 'scroll' | 'dragAndDrop';
   url?: string;
   milliseconds?: number;
   selector?: SelectorType;
@@ -20,6 +20,12 @@ export interface ScenarioStep {
   text?: string;
   name?: string;
   caption?: string;
+  x?: number;
+  y?: number;
+  startX?: number;
+  startY?: number;
+  endX?: number;
+  endY?: number;
 }
 
 export interface Scenario {

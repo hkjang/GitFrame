@@ -220,6 +220,8 @@ gitframe
 | `assertText` | Assert that an element's text matches expected value |
 | `waitFor` | Wait until an element appears |
 | `screenshot` | Capture and save a screenshot |
+| `scroll` | Scroll the browser window or a specific element by x, y pixels |
+| `dragAndDrop` | Drag and select area from start coordinates to end coordinates |
 
 ### Locator Strategy (Priority Order)
 > `testId` > `role` + `name` > `label` > `placeholder` > `text` > CSS

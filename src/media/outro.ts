@@ -32,6 +32,8 @@ export async function generateOutro(
     args.push('-vf', drawTextFilter);
   }
 
+  args.push('-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-r', '30', '-an', outputPath);
+
   try {
     await runFfmpeg(args, logFilePath);
   } catch (err: any) {

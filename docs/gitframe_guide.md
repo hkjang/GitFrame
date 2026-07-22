@@ -124,6 +124,8 @@ steps:
 | **`assertText`** | 특정 요소의 텍스트가 일치하는지 확인 | `selector`, `text` | `text: "Success!"` |
 | **`waitFor`** | 특정 요소가 나타날 때까지 로딩 대기 | `selector` | `selector: ".loading-spinner"` |
 | **`screenshot`** | 현재 화면 스크린샷 캡처 및 저장 | `name` | `name: "after-submit"` |
+| **`scroll`** | 브라우저 창 또는 특정 요소를 스크롤 | `x`, `y` (선택: `selector`) | `y: 750` |
+| **`dragAndDrop`** | 마우스로 특정 영역 드래그 앤 드롭 선택 | `selector` (선택: `startX`, `startY`, `endX`, `endY`) | `selector: "#xv-chart", startX: 100, endX: 400` |
 
 ### 3. 요소를 찾는 방법 (Selector)
 단순한 CSS Selector 외에도 접근성 기반의 지능형 선택자(Structured Selector)를 지원합니다.

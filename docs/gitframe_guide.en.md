@@ -123,6 +123,8 @@ steps:
 | **`assertText`** | Assert that an element's text matches | `selector`, `text` | `text: "Success!"` |
 | **`waitFor`** | Wait until an element appears | `selector` | `selector: ".loading-spinner"` |
 | **`screenshot`** | Capture and save a screenshot | `name` | `name: "after-submit"` |
+| **`scroll`** | Scroll the browser window or an element | `x`, `y` (optional: `selector`) | `y: 750` |
+| **`dragAndDrop`** | Drag and select area on an element | `selector` (optional: `startX`, `startY`, `endX`, `endY`) | `selector: "#xv-chart", startX: 100, endX: 400` |
 
 ### 3. Selector Strategies
 In addition to plain CSS selectors, GitFrame supports structured accessibility-based selectors.

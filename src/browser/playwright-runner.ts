@@ -138,7 +138,7 @@ export async function runPlaywrightScenario(
           }
           case 'click': {
             if (!step.selector) throw new Error('Click action requires a selector');
-            const loc = resolveLocator(page, step.selector);
+            const loc = resolveLocator(page, step.selector).first();
             await loc.waitFor({ state: 'visible', timeout: 10000 });
             await loc.click();
             break;
@@ -146,7 +146,7 @@ export async function runPlaywrightScenario(
           case 'fill': {
             if (!step.selector) throw new Error('Fill action requires a selector');
             if (step.value === undefined) throw new Error('Fill action requires a value');
-            const loc = resolveLocator(page, step.selector);
+            const loc = resolveLocator(page, step.selector).first();
             await loc.waitFor({ state: 'visible', timeout: 10000 });
             await loc.fill(step.value);
             break;
@@ -158,7 +158,7 @@ export async function runPlaywrightScenario(
           }
           case 'assertVisible': {
             if (!step.selector) throw new Error('assertVisible action requires a selector');
-            const loc = resolveLocator(page, step.selector);
+            const loc = resolveLocator(page, step.selector).first();
             await loc.waitFor({ state: 'visible', timeout: 10000 });
             const visible = await loc.isVisible();
             if (!visible) {
@@ -169,7 +169,7 @@ export async function runPlaywrightScenario(
           case 'assertText': {
             if (!step.selector) throw new Error('assertText action requires a selector');
             if (step.text === undefined) throw new Error('assertText action requires expected text');
-            const loc = resolveLocator(page, step.selector);
+            const loc = resolveLocator(page, step.selector).first();
             await loc.waitFor({ state: 'visible', timeout: 10000 });
             const textContent = await loc.textContent();
             if (!textContent || !textContent.includes(step.text)) {
@@ -179,7 +179,7 @@ export async function runPlaywrightScenario(
           }
           case 'waitFor': {
             if (!step.selector) throw new Error('waitFor action requires a selector');
-            const loc = resolveLocator(page, step.selector);
+            const loc = resolveLocator(page, step.selector).first();
             await loc.waitFor({ state: 'visible', timeout: 10000 });
             break;
           }
@@ -187,6 +187,40 @@ export async function runPlaywrightScenario(
             const name = step.name || `screenshot-${stepId}`;
             const sPath = await takePageScreenshot(page, outputDir, name);
             screenshots.push(sPath);
+            break;
+          }
+          case 'scroll': {
+            const x = step.x || 0;
+            const y = step.y || 0;
+            if (step.selector) {
+              const loc = resolveLocator(page, step.selector).first();
+              await loc.waitFor({ state: 'visible', timeout: 10000 });
+              await loc.evaluate((el, { x, y }) => {
+                el.scrollBy(x, y);
+              }, { x, y });
+            } else {
+              await page.evaluate(({ x, y }) => {
+                window.scrollBy(x, y);
+              }, { x, y });
+            }
+            break;
+          }
+          case 'dragAndDrop': {
+            if (!step.selector) throw new Error('dragAndDrop requires a selector');
+            const loc = resolveLocator(page, step.selector).first();
+            await loc.waitFor({ state: 'visible', timeout: 10000 });
+            const box = await loc.boundingBox();
+            if (!box) throw new Error('Could not find bounding box for selector');
+            
+            const startX = box.x + (step.startX !== undefined ? step.startX : box.width * 0.2);
+            const startY = box.y + (step.startY !== undefined ? step.startY : box.height * 0.2);
+            const endX = box.x + (step.endX !== undefined ? step.endX : box.width * 0.8);
+            const endY = box.y + (step.endY !== undefined ? step.endY : box.height * 0.8);
+            
+            await page.mouse.move(startX, startY);
+            await page.mouse.down();
+            await page.mouse.move(endX, endY, { steps: 10 });
+            await page.mouse.up();
             break;
           }
           default:

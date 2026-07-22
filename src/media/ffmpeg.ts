@@ -11,6 +11,8 @@ import { generateOutro } from './outro';
 
 export function getFontFile(): string | null {
   const linuxFonts = [
+    '/usr/share/fonts/truetype/nanum/NanumBarunGothicBold.ttf',
+    '/usr/share/fonts/truetype/nanum/NanumGothicBold.ttf',
     '/home/gaga/.fonts/NanumGothicBold.ttf',
     '/home/gaga/.fonts/NanumBarunGothicBold.ttf',
     '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',
@@ -36,15 +38,21 @@ export function getFontFile(): string | null {
 }
 
 export async function runFfmpeg(args: string[], logFilePath: string, cwd?: string): Promise<void> {
-  if (!ffmpegPath) {
-    throw new MediaRenderingError('FFmpeg binary not found in ffmpeg-static.');
+  const systemFfmpeg = (() => {
+    try {
+      return require('child_process').execSync('which ffmpeg', { encoding: 'utf8' }).trim();
+    } catch (_) { return null; }
+  })();
+  const activeFfmpegPath = systemFfmpeg || ffmpegPath;
+  if (!activeFfmpegPath) {
+    throw new MediaRenderingError('FFmpeg binary not found.');
   }
 
   logger.info(`Running FFmpeg: ffmpeg ${args.join(' ')}`);
   fs.mkdirSync(path.dirname(logFilePath), { recursive: true });
   fs.appendFileSync(logFilePath, `\n=== FFmpeg Command: ffmpeg ${args.join(' ')} ===\n`, 'utf8');
 
-  const child = spawn(ffmpegPath, args, {
+  const child = spawn(activeFfmpegPath, args, {
     cwd,
     stdio: ['ignore', 'pipe', 'pipe']
   });

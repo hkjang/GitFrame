@@ -221,6 +221,8 @@ gitframe
 | `assertText` | 요소의 텍스트 내용 일치 여부 검증 |
 | `waitFor` | 요소가 나타날 때까지 대기 |
 | `screenshot` | 스크린샷 캡처 및 저장 |
+| `scroll` | 지정한 픽셀 수만큼 브라우저 창 또는 특정 요소 스크롤 |
+| `dragAndDrop` | 특정 요소를 시작점 좌표에서 끝점 좌표까지 마우스 드래그 앤 드롭 선택 |
 
 ### 우선순위 선택자 (Locator Strategy)
 > `testId` > `role` + `name` > `label` > `placeholder` > `text` > CSS 순서로 지능적으로 요소를 탐색합니다.
