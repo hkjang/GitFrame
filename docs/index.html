@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>GitFrame CLI — Automated Browser Testing & Demo Video Generator</title>
+  <meta name="title" content="GitFrame CLI — Automated Browser Testing & Demo Video Generator">
+  <meta name="description" content="웹 프로젝트 자동 빌드·실행부터 Playwright 시나리오 검증, FFmpeg MP4 영상/한글 자막 컴파일, 진단 리포트까지 원스톱 패키징하는 개발자용 CLI 도구입니다.">
+  <meta name="keywords" content="GitFrame, Playwright, FFmpeg, CLI, E2E Testing, Demo Video Generator, Web Automation, Developer Tools, Open Source, Node.js">
+  <meta name="author" content="hkjang (gagagiga@naver.com)">
+  <link rel="canonical" href="https://hkjang.github.io/GitFrame/">
+
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hkjang.github.io/GitFrame/">
+  <meta property="og:title" content="GitFrame CLI — Automated Browser Testing & Demo Video Generator">
+  <meta property="og:description" content="웹 프로젝트를 자동으로 빌드·실행하고, YAML 시나리오에 따라 브라우저 동작을 검증한 뒤, 고화질 데모 영상(MP4), 한글 자막(SRT), HTML 검증 리포트로 패키징합니다.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/hkjang/GitFrame/main/docs/assets/hero-banner.jpg">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://hkjang.github.io/GitFrame/">
+  <meta property="twitter:title" content="GitFrame CLI — Automated Browser Testing & Demo Video Generator">
+  <meta property="twitter:description" content="Automate web app execution, Playwright browser playback, and FFmpeg video packaging into high-def MP4 demo videos.">
+  <meta property="twitter:image" content="https://raw.githubusercontent.com/hkjang/GitFrame/main/docs/assets/hero-banner.jpg">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Structured Data / JSON-LD for SEO & AEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "GitFrame CLI",
+    "operatingSystem": "Linux, macOS, Windows (WSL)",
+    "applicationCategory": "DeveloperApplication",
+    "description": "GitFrame is a developer CLI tool that automates building web projects, testing browser scenarios via Playwright, and packaging high-definition demo videos with FFmpeg and subtitles.",
+    "url": "https://hkjang.github.io/GitFrame/",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "license": "https://github.com/hkjang/GitFrame/blob/main/LICENSE",
+    "author": {
+      "@type": "Person",
+      "name": "hkjang",
+      "email": "gagagiga@naver.com"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "GitFrame CLI란 무엇인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "GitFrame은 웹 프로젝트를 자동으로 빌드 및 실행하고, YAML에 정의된 시나리오에 따라 Playwright 헤드리스 브라우저로 동작을 검증하며, 그 과정을 MP4 영상, SRT 자막, HTML 진단 리포트로 패키징해 주는 개발자용 CLI 도구입니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "어떤 프로젝트 언어와 프레임워크를 지원하나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Node.js (Vite, Next.js, Express), Python (FastAPI, Django, Flask), Go, Java (Spring Boot), Docker Compose 및 정적 HTML 웹 서비스를 자동 감지하고 실행을 지원합니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "디스플레이 서버가 없는 리눅스/WSL 서블릿 환경에서도 작동하나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "네. Playwright 헤드리스 브라우저와 시스템 FFmpeg을 활용하여 별도의 그래픽 디스플레이 서버 없이 CLI 터미널 환경에서 100% 비디오 렌더링 및 검증이 완료됩니다."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="#" class="nav-brand">
+        <div class="nav-logo-icon">🎬</div>
+        <span>GitFrame</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#features" data-i18n="navFeatures">핵심 기능</a></li>
+          <li><a href="#pipeline" data-i18n="navPipeline">작동 파이프라인</a></li>
+          <li><a href="#demos" data-i18n="navDemos">데모 영상</a></li>
+          <li><a href="#quickstart" data-i18n="navQuickstart">빠른 시작</a></li>
+          <li><a href="#cli" data-i18n="navCli">명령어</a></li>
+          <li><a href="#faq" data-i18n="navFaq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-switch">
+          <button class="lang-btn active" data-lang="ko">KO</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
+        <a href="https://github.com/hkjang/GitFrame" target="_blank" class="btn-github">
+          <i class="fab fa-github"></i>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="badge">
+            <span class="badge-dot"></span>
+            <span data-i18n="badgeText">🎬 개발자를 위한 자동 비디오 검증 CLI</span>
+          </div>
+
+          <h1 class="hero-title" data-i18n="heroTitle">
+            코드 실행부터 고화질 데모 영상 패키징까지 <span class="gradient-text">단 한 줄의 명령어로</span>
+          </h1>
+
+          <p class="hero-subtitle" data-i18n="heroSubtitle">
+            GitFrame은 웹 프로젝트를 자동으로 빌드·실행하고, YAML 시나리오로 Playwright 브라우저 동작을 검증한 뒤 MP4 영상, SRT 한글/영문 자막, HTML 진단 리포트로 자동 패키징하는 CLI 도구입니다.
+          </p>
+
+          <div class="hero-cta">
+            <a href="#quickstart" class="btn-primary">
+              <i class="fas fa-rocket"></i>
+              <span data-i18n="btnQuickStart">빠른 시작하기</span>
+            </a>
+            <a href="#demos" class="btn-secondary">
+              <i class="fas fa-play-circle"></i>
+              <span data-i18n="btnWatchDemos">데모 영상 둘러보기</span>
+            </a>
+          </div>
+
+          <!-- Terminal Mockup -->
+          <div class="hero-cli-preview">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <div class="terminal-title">bash — gitframe render</div>
+            </div>
+            <div class="terminal-body">
+              <div class="command-line">
+                <div>
+                  <span class="cmd-prompt">$</span>
+                  <span class="cmd-text">npx gitframe render --output output</span>
+                </div>
+                <button class="copy-btn" data-target="hero-cmd-text"><i class="far fa-copy"></i> 복사</button>
+              </div>
+              <div id="hero-cmd-text" style="display:none;">npx gitframe render --output output</div>
+              <div style="color: #9CA3AF; font-size: 0.85rem;">
+                ✔ Project Language: <span style="color: #A5B4FC;">Go / Node.js detected</span><br>
+                ✔ Isolated Workspace: <span style="color: #38BDF8;">/tmp/gitframe-worktree created</span><br>
+                ✔ Playwright Playback: <span style="color: #10B981;">18 scenarios passed (1440x900@30fps)</span><br>
+                ✔ FFmpeg Rendering: <span style="color: #C084FC;">MP4 + SRT Subtitles + GIF generated</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Image Showcase -->
+          <div class="hero-image-wrapper">
+            <div class="hero-image-inner">
+              <img src="assets/hero-banner.jpg" alt="GitFrame Automated Video Workflow Interface">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section id="features">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge">KEY FEATURES</div>
+          <h2 class="section-title" data-i18n="secFeaturesTitle">왜 <span class="gradient-text">GitFrame</span>인가요?</h2>
+          <p class="section-desc" data-i18n="secFeaturesDesc">프로젝트 검증과 데모 영상 제작에 들어가는 귀중한 시간을 혁신적으로 줄여줍니다.</p>
+        </div>
+
+        <div class="features-grid">
+          <!-- Feature 1 -->
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-magic"></i></div>
+            <h3 class="feature-title lang-content-ko">프로젝트 자동 감지</h3>
+            <h3 class="feature-title lang-content-en" style="display:none;">Auto Project Detection</h3>
+            <p class="feature-body lang-content-ko">
+              Node.js, Python, Go, Java, Docker Compose 등 프로젝트 언어와 프레임워크를 자동으로 식별하여 최적의 빌드 및 포트 구동 명령을 추천합니다.
+            </p>
+            <p class="feature-body lang-content-en" style="display:none;">
+              Automatically detects Node.js, Python, Go, Java, Docker Compose, and static web apps, suggesting optimal build and port configurations.
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+            <h3 class="feature-title lang-content-ko">격리된 작업 공간</h3>
+            <h3 class="feature-title lang-content-en" style="display:none;">Isolated Sandbox Execution</h3>
+            <p class="feature-body lang-content-ko">
+              `/tmp` 임시 격리 공간에 원본 프로젝트를 복사하여 샌드박스 형태로 안전하게 빌드하고 검증하므로 로컬 원본 소스에 전혀 영향을 주지 않습니다.
+            </p>
+            <p class="feature-body lang-content-en" style="display:none;">
+              Clones the project into a temporary isolated workspace (`/tmp`), executing clean builds without modifying your local source tree.
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-vial"></i></div>
+            <h3 class="feature-title lang-content-ko">Playwright 시나리오 검증</h3>
+            <h3 class="feature-title lang-content-en" style="display:none;">Playwright Browser Automation</h3>
+            <p class="feature-body lang-content-ko">
+              YAML로 작성된 간단한 시나리오에 따라 클릭, 이동, 입력, 스크롤 동작을 고해상도 헤드리스 브라우저에서 동시 검증하고 실시간 화면을 녹화합니다.
+            </p>
+            <p class="feature-body lang-content-en" style="display:none;">
+              Executes clicks, navigations, inputs, and scroll events via YAML scenario definitions while recording high-resolution browser frames.
+            </p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-film"></i></div>
+            <h3 class="feature-title lang-content-ko">FFmpeg 비디오 & 자막 파이프라인</h3>
+            <h3 class="feature-title lang-content-en" style="display:none;">FFmpeg & SRT Subtitle Compiler</h3>
+            <p class="feature-body lang-content-ko">
+              시나리오 step의 caption 문구를 한글/영문 SRT 자막으로 자동 변환하고, 인트로/아웃트로 카드와 브라우저 녹화본을 1440x900 MP4/GIF로 자동 렌더링합니다.
+            </p>
+            <p class="feature-body lang-content-en" style="display:none;">
+              Compiles step captions into SRT subtitles and merges intro/outro title cards with recorded WebM into high-quality MP4 and GIF formats.
+            </p>
+          </div>
+
+          <!-- Feature 5 -->
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-file-alt"></i></div>
+            <h3 class="feature-title lang-content-ko">통합 진단 리포트 패키징</h3>
+            <h3 class="feature-title lang-content-en" style="display:none;">Rich Diagnostic Artifacts</h3>
+            <p class="feature-body lang-content-ko">
+              HTML 인터랙티브 리포트, Playwright Trace ZIP, 대표 썸네일 PNG, 스크린샷 및 검증 JSON 결과서를 단 하나의 `output` 폴더에 일괄 출력합니다.
+            </p>
+            <p class="feature-body lang-content-en" style="display:none;">
+              Generates an all-in-one diagnostic package containing HTML reports, Playwright Trace ZIP, video thumbnails, screenshots, and JSON specs.
+            </p>
+          </div>
+
+          <!-- Feature 6 -->
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-globe"></i></div>
+            <h3 class="feature-title lang-content-ko">원스톱 Git 저장소 처리</h3>
+            <h3 class="feature-title lang-content-en" style="display:none;">One-Stop Git Render</h3>
+            <p class="feature-body lang-content-ko">
+              `gitframe create <git-url>` 명령어 한 줄로 원격 Git 저장소를 Clone하여 빌드, 시나리오 실행, 비디오 패키징까지 전 과정을 원스톱으로 처리합니다.
+            </p>
+            <p class="feature-body lang-content-en" style="display:none;">
+              Run `gitframe create <git-url>` to automatically clone remote repos, build, execute scenario playbacks, and generate videos seamlessly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture / Pipeline Section -->
+    <section id="pipeline" style="background: rgba(0,0,0,0.2);">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge">AUTOMATED PIPELINE</div>
+          <h2 class="section-title" data-i18n="secPipelineTitle">완전 자동화된 <span class="gradient-text">렌더링 파이프라인</span></h2>
+          <p class="section-desc" data-i18n="secPipelineDesc">격리된 작업 공간에서 빌드부터 비디오 최종 합성까지 안전하고 완벽하게 처리됩니다.</p>
+        </div>
+
+        <div class="pipeline-container">
+          <div class="pipeline-step">
+            <span class="step-num">1</span>
+            <h4 class="step-title lang-content-ko">감지 및 복사</h4>
+            <h4 class="step-title lang-content-en" style="display:none;">Detect & Clone</h4>
+            <p class="step-desc lang-content-ko">언어/포트 감지 및 `/tmp` 격리 워크스페이스 복사</p>
+            <p class="step-desc lang-content-en" style="display:none;">Detect stack & clone to temporary workspace</p>
+          </div>
+
+          <div class="pipeline-step">
+            <span class="step-num">2</span>
+            <h4 class="step-title lang-content-ko">샌드박스 구동</h4>
+            <h4 class="step-title lang-content-en" style="display:none;">Build & Start</h4>
+            <p class="step-desc lang-content-ko">의존성 설치, 빌드 실행 및 헬스체크 대기</p>
+            <p class="step-desc lang-content-en" style="display:none;">Install deps, build, launch server & healthcheck</p>
+          </div>
+
+          <div class="pipeline-step">
+            <span class="step-num">3</span>
+            <h4 class="step-title lang-content-ko">시나리오 플레이백</h4>
+            <h4 class="step-title lang-content-en" style="display:none;">Playwright Playback</h4>
+            <p class="step-desc lang-content-ko">Playwright 헤드리스 브라우저 테스트 및 녹화</p>
+            <p class="step-desc lang-content-en" style="display:none;">Headless browser scenario playback & screen record</p>
+          </div>
+
+          <div class="pipeline-step">
+            <span class="step-num">4</span>
+            <h4 class="step-title lang-content-ko">비디오 & 자막 렌더링</h4>
+            <h4 class="step-title lang-content-en" style="display:none;">FFmpeg Compositing</h4>
+            <p class="step-desc lang-content-ko">WebM → MP4 인트로/아웃트로 병합 및 SRT 자막 생성</p>
+            <p class="step-desc lang-content-en" style="display:none;">WebM to MP4, intro/outro merge & SRT subtitles</p>
+          </div>
+
+          <div class="pipeline-step">
+            <span class="step-num">5</span>
+            <h4 class="step-title lang-content-ko">아티팩트 패키징</h4>
+            <h4 class="step-title lang-content-en" style="display:none;">Artifact Packaging</h4>
+            <p class="step-desc lang-content-ko">HTML 리포트, Trace.zip, 썸네일 최종 패키징</p>
+            <p class="step-desc lang-content-en" style="display:none;">Packaging HTML report, Trace ZIP & thumbnails</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Demo Showcase Section -->
+    <section id="demos">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge">DEMO SHOWCASE</div>
+          <h2 class="section-title" data-i18n="secDemosTitle">실제 생성된 <span class="gradient-text">데모 영상 사례</span></h2>
+          <p class="section-desc" data-i18n="secDemosDesc">모든 영상은 화면 캡처 소프트웨어 없이 GitFrame CLI 명령어 하나로 자동 생성되었습니다.</p>
+        </div>
+
+        <div class="demo-grid">
+          <!-- Demo 1 -->
+          <div class="demo-card">
+            <div class="demo-media">
+              <video controls poster="assets/hero-banner.jpg" preload="none">
+                <source src="https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/sqlon-demo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="demo-content">
+              <span class="demo-tag">Go / Database Operations</span>
+              <h3 class="demo-title">SQLON Operations Platform</h3>
+              <p class="demo-desc lang-content-ko">AI Database 통합 운영 플랫폼 — 18개 화면 자동 순환 플레이백 (세션 관리, 워크로드, DBA, Text2SQL 등)</p>
+              <p class="demo-desc lang-content-en" style="display:none;">AI Database Operations Platform — Automated 18 screens playback (Session, Workloads, Security, Text2SQL)</p>
+              <div class="demo-footer">
+                <span class="demo-specs"><i class="fas fa-video"></i> 1440×900 / 30fps / SRT</span>
+                <a href="https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/sqlon-demo.mp4" target="_blank" class="btn-watch">▶ MP4 다운로드</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Demo 2 -->
+          <div class="demo-card">
+            <div class="demo-media">
+              <video controls poster="assets/hero-banner.jpg" preload="none">
+                <source src="https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/jamypg-demo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="demo-content">
+              <span class="demo-tag">PostgreSQL / NL2SQL Platform</span>
+              <h3 class="demo-title">JAMYPG Operations Platform</h3>
+              <p class="demo-desc lang-content-ko">PostgreSQL NL2SQL 통합 운영 플랫폼 — DBA 코파일럿, OpenMetadata, 품질 게이트 시나리오 검증</p>
+              <p class="demo-desc lang-content-en" style="display:none;">PostgreSQL NL2SQL Operations — DBA Copilot, OpenMetadata & Quality Gates scenario validation</p>
+              <div class="demo-footer">
+                <span class="demo-specs"><i class="fas fa-video"></i> 1440×900 / 30fps / SRT</span>
+                <a href="https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/jamypg-demo.mp4" target="_blank" class="btn-watch">▶ MP4 다운로드</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Demo 3 -->
+          <div class="demo-card">
+            <div class="demo-media">
+              <video controls poster="assets/hero-banner.jpg" preload="none">
+                <source src="https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/vibe-coders-demo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="demo-content">
+              <span class="demo-tag">AI Proxy Gateway</span>
+              <h3 class="demo-title">Vibe Coders Gateway</h3>
+              <p class="demo-desc lang-content-ko">AI 코딩 프록시 게이트웨이 — MCP 라우팅, Red Team 보안, 실시간 비용 대시보드 검증 데모</p>
+              <p class="demo-desc lang-content-en" style="display:none;">AI Coding Proxy Gateway — MCP Routing, Red Team Security & Real-time Cost Dashboard demo</p>
+              <div class="demo-footer">
+                <span class="demo-specs"><i class="fas fa-video"></i> 1440×900 / 30fps / SRT</span>
+                <a href="https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/vibe-coders-demo.mp4" target="_blank" class="btn-watch">▶ MP4 다운로드</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Start Section -->
+    <section id="quickstart" style="background: rgba(0,0,0,0.2);">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge">QUICK START</div>
+          <h2 class="section-title" data-i18n="secQuickstartTitle">3분 만에 시작하는 <span class="gradient-text">GitFrame</span></h2>
+          <p class="section-desc" data-i18n="secQuickstartDesc">기존 프로젝트에 바로 적용할 수 있는 쉬운 명령어와 YAML 설정 가이드.</p>
+        </div>
+
+        <div class="quickstart-wrapper">
+          <div class="tabs-header">
+            <button class="tab-btn active" data-tab="step1">1. Init Project</button>
+            <button class="tab-btn" data-tab="step2">2. gitframe.yaml</button>
+            <button class="tab-btn" data-tab="step3">3. demo.yaml</button>
+            <button class="tab-btn" data-tab="step4">4. Render Video</button>
+          </div>
+
+          <!-- Tab 1 -->
+          <div class="tab-pane active" id="tab-step1">
+            <h4 style="margin-bottom: 12px; font-size: 1.1rem;" class="lang-content-ko">1. 기존 웹 프로젝트에 GitFrame 초기화</h4>
+            <h4 style="margin-bottom: 12px; font-size: 1.1rem; display:none;" class="lang-content-en">1. Initialize GitFrame in your project</h4>
+            <div class="code-box">
+              <div class="code-header">
+                <span>Terminal</span>
+                <button class="copy-btn" data-target="code-init"><i class="far fa-copy"></i> 복사</button>
+              </div>
+              <pre id="code-init">cd /path/to/my-web-project
+npx gitframe init</pre>
+            </div>
+            <p style="margin-top: 12px; font-size: 0.9rem; color: var(--text-muted);" class="lang-content-ko">
+              이 명령어를 실행하면 `.gitframe/gitframe.yaml` 과 `.gitframe/demo.yaml` 기본 샘플 파일이 자동으로 들어갑니다.
+            </p>
+          </div>
+
+          <!-- Tab 2 -->
+          <div class="tab-pane" id="tab-step2">
+            <h4 style="margin-bottom: 12px; font-size: 1.1rem;" class="lang-content-ko">2. 프로젝트 설정 파일 (.gitframe/gitframe.yaml)</h4>
+            <h4 style="margin-bottom: 12px; font-size: 1.1rem; display:none;" class="lang-content-en">2. Configure (.gitframe/gitframe.yaml)</h4>
+            <div class="code-box">
+              <div class="code-header">
+                <span>.gitframe/gitframe.yaml</span>
+                <button class="copy-btn" data-target="code-yaml"><i class="far fa-copy"></i> 복사</button>
+              </div>
+              <pre id="code-yaml">project:
+  language: "go"         # node | python | go | java | compose | static
+  install: "go mod download"
+  build: "go build -o server ./cmd/app"
+  start: "./server"
+  port: 8080
+scenarioFile: ".gitframe/demo.yaml"
+outputDir: "output"
+video:
+  width: 1440
+  height: 900
+  fps: 30
+intro:
+  title: "My Web Application"
+  subtitle: "Automated Demo Video"
+  duration: 3
+captions: true</pre>
+            </div>
+          </div>
+
+          <!-- Tab 3 -->
+          <div class="tab-pane" id="tab-step3">
+            <h4 style="margin-bottom: 12px; font-size: 1.1rem;" class="lang-content-ko">3. 브라우저 테스트 시나리오 정의 (.gitframe/demo.yaml)</h4>
+            <h4 style="margin-bottom: 12px; font-size: 1.1rem; display:none;" class="lang-content-en">3. Define Scenario (.gitframe/demo.yaml)</h4>
+            <div class="code-box">
+              <div class="code-header">
+                <span>.gitframe/demo.yaml</span>
+                <button class="copy-btn" data-target="code-demo-yaml"><i class="far fa-copy"></i> 복사</button>
+              </div>
+              <pre id="code-demo-yaml">start_url: "http://localhost:8080"
+steps:
+  - id: step-1
+    action: goto
+    url: "/dashboard"
+    caption: "메인 대시보드로 이동합니다"
+
+  - id: step-2
+    action: pause
+    milliseconds: 3000
+
+  - id: step-3
+    action: click
+    selector:
+      role: "button"
+      name: "데이터 로드"
+    caption: "데이터 불러오기 버튼을 클릭합니다"
+
+  - id: step-4
+    action: screenshot
+    name: "dashboard_loaded"
+    caption: "대시보드 검증이 완료되었습니다"</pre>
+            </div>
+          </div>
+
+          <!-- Tab 4 -->
+          <div class="tab-pane" id="tab-step4">
+            <h4 style="margin-bottom: 12px; font-size: 1.1rem;" class="lang-content-ko">4. 비디오 파이프라인 실행</h4>
+            <h4 style="margin-bottom: 12px; font-size: 1.1rem; display:none;" class="lang-content-en">4. Execute Video Pipeline</h4>
+            <div class="code-box">
+              <div class="code-header">
+                <span>Terminal</span>
+                <button class="copy-btn" data-target="code-render"><i class="far fa-copy"></i> 복사</button>
+              </div>
+              <pre id="code-render">npx gitframe render --output output</pre>
+            </div>
+            <p style="margin-top: 12px; font-size: 0.9rem; color: var(--accent-emerald);" class="lang-content-ko">
+              ✔ 렌더링 완료 후 output/ 폴더에서 *.mp4, subtitles.srt, report.html 결과물을 바로 확인할 수 있습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLI Reference Section -->
+    <section id="cli">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge">CLI CHEATSHEET</div>
+          <h2 class="section-title" data-i18n="secCliTitle">직관적인 <span class="gradient-text">CLI 명령어 체계</span></h2>
+          <p class="section-desc" data-i18n="secCliDesc">개발 흐름에 필요한 모든 동작을 간편하게 제어하세요.</p>
+        </div>
+
+        <div class="cli-grid">
+          <div class="cli-card">
+            <div class="cli-cmd">gitframe init</div>
+            <p class="cli-desc lang-content-ko">현재 디렉터리에 `.gitframe` 설정 및 샘플 시나리오 파일 생성</p>
+            <p class="cli-desc lang-content-en" style="display:none;">Initialize `.gitframe` config and sample scenario files</p>
+          </div>
+
+          <div class="cli-card">
+            <div class="cli-cmd">gitframe inspect</div>
+            <p class="cli-desc lang-content-ko">프로젝트 언어, 빌드/실행 명령어 및 구동 포트 자동 감지</p>
+            <p class="cli-desc lang-content-en" style="display:none;">Detect project stack, build commands, and listening ports</p>
+          </div>
+
+          <div class="cli-card">
+            <div class="cli-cmd">gitframe test</div>
+            <p class="cli-desc lang-content-ko">비디오 렌더링 없이 시나리오 검증만 빠르게 실행 (개발 검증용)</p>
+            <p class="cli-desc lang-content-en" style="display:none;">Fast scenario validation without rendering video</p>
+          </div>
+
+          <div class="cli-card">
+            <div class="cli-cmd">gitframe render</div>
+            <p class="cli-desc lang-content-ko">격리 빌드 → 시나리오 녹화 → FFmpeg 합성 비디오 풀파이프라인 실행</p>
+            <p class="cli-desc lang-content-en" style="display:none;">Full pipeline: Sandbox build → record → FFmpeg MP4 merge</p>
+          </div>
+
+          <div class="cli-card">
+            <div class="cli-cmd">gitframe create &lt;url&gt;</div>
+            <p class="cli-desc lang-content-ko">원격 Git 저장소를 Clone하여 전체 검증 및 비디오 패키징 원스톱 처리</p>
+            <p class="cli-desc lang-content-en" style="display:none;">Clone remote Git repository and run full pipeline end-to-end</p>
+          </div>
+
+          <div class="cli-card">
+            <div class="cli-cmd">gitframe doctor</div>
+            <p class="cli-desc lang-content-ko">Node, Playwright, FFmpeg 등 필요 의존성 도구 설치 상태 진단</p>
+            <p class="cli-desc lang-content-en" style="display:none;">Check installation status of Node, Playwright, FFmpeg</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" style="background: rgba(0,0,0,0.2);">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge">FAQ</div>
+          <h2 class="section-title" data-i18n="secFaqTitle">자주 묻는 <span class="gradient-text">질문 (FAQ)</span></h2>
+          <p class="section-desc" data-i18n="secFaqDesc">GitFrame의 활용법 및 기술 스펙에 대한 궁금증을 확인하세요.</p>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item active">
+            <button class="faq-question">
+              <span class="lang-content-ko">Q1. GitFrame CLI는 어떤 용도로 사용하나요?</span>
+              <span class="lang-content-en" style="display:none;">Q1. What is the primary purpose of GitFrame CLI?</span>
+              <i class="fas fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p class="lang-content-ko">
+                GitFrame은 웹 애플리케이션의 개발 검증(E2E 테스팅)과 시동 데모 비디오 생성을 자동화하기 위한 도구입니다. 화면 캡처 프로그램을 켜고 수동으로 조작하는 번거로움 없이 YAML 시나리오만 정의해 두면 언제든 동일한 품질의 데모 영상과 검증 리포트를 얻을 수 있습니다.
+              </p>
+              <p class="lang-content-en" style="display:none;">
+                GitFrame automates web app E2E verification and demo video generation. Instead of manual screen recording, you define YAML scenarios to automatically render consistent demo videos and diagnostic reports.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span class="lang-content-ko">Q2. 리눅스/WSL이나 디스플레이 서버가 없는 환경에서도 비디오가 렌더링되나요?</span>
+              <span class="lang-content-en" style="display:none;">Q2. Does video rendering work on Linux/WSL without display servers?</span>
+              <i class="fas fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p class="lang-content-ko">
+                네! GitFrame은 Playwright의 헤드리스(Headless) 브라우저 화면 녹화 기능과 시스템 FFmpeg 라이브러리를 활용합니다. GUI 디스플레이 서버가 없는 리눅스 서버나 CI/CD 파이프라인 환경에서도 100% 정상 작동합니다.
+              </p>
+              <p class="lang-content-en" style="display:none;">
+                Yes! GitFrame utilizes Playwright's headless browser recording and system FFmpeg binaries. It runs 100% seamlessly in Linux servers or CI/CD pipelines without display servers.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span class="lang-content-ko">Q3. 한글 자막이 비디오에 자동으로 포함되나요?</span>
+              <span class="lang-content-en" style="display:none;">Q3. Are subtitles automatically rendered into the video?</span>
+              <i class="fas fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p class="lang-content-ko">
+                네. 시나리오 step 파일의 `caption` 필드에 기술한 설명 문구들이 타임스탬프와 매칭되어 `subtitles.srt` 자막 파일로 자동 컴파일됩니다.
+              </p>
+              <p class="lang-content-en" style="display:none;">
+                Yes. The `caption` fields defined in scenario steps are timestamped and compiled into `subtitles.srt` files automatically.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span class="lang-content-ko">Q4. 오픈소스 및 라이선스 정책은 어떻게 되나요?</span>
+              <span class="lang-content-en" style="display:none;">Q4. What is the open source licensing policy?</span>
+              <i class="fas fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p class="lang-content-ko">
+                GitFrame은 Apache 2.0 라이선스를 따르는 오픈소스 프로젝트입니다. 자유롭게 사용, 수정 및 배포하실 수 있습니다.
+              </p>
+              <p class="lang-content-en" style="display:none;">
+                GitFrame is an open source project licensed under Apache 2.0. You are free to use, modify, and distribute it.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer & Contact Section -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">🎬 GitFrame CLI</div>
+          <p class="footer-desc" data-i18n="footerTagline">
+            웹 프로젝트 실행, E2E 검증, 데모 비디오 렌더링 풀 파이프라인 자동화 CLI
+          </p>
+
+          <div class="footer-contact-box">
+            <span data-i18n="emailLabel">📧 이메일 문의:</span>
+            <a href="mailto:gagagiga@naver.com" class="contact-mail-link">gagagiga@naver.com</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Documentation</h4>
+          <ul>
+            <li><a href="https://github.com/hkjang/GitFrame/blob/main/docs/gitframe_guide.md" target="_blank">GitFrame CLI Guide</a></li>
+            <li><a href="https://github.com/hkjang/GitFrame/blob/main/docs/ai-agent-guide.md" target="_blank">AI Agent Integration</a></li>
+            <li><a href="https://github.com/hkjang/GitFrame/blob/main/docs/setup-macos.md" target="_blank">macOS Setup Guide</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Community & Code</h4>
+          <ul>
+            <li><a href="https://github.com/hkjang/GitFrame" target="_blank">GitHub Repository</a></li>
+            <li><a href="https://github.com/hkjang/GitFrame/blob/main/LICENSE" target="_blank">Apache 2.0 License</a></li>
+            <li><a href="https://github.com/hkjang/GitFrame/releases" target="_blank">Releases</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px;" data-i18n="contactDesc">
+            제품 문의 및 협업 제안은 아래 이메일로 전달해 주세요.
+          </p>
+          <a href="mailto:gagagiga@naver.com" class="btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;">
+            <i class="far fa-envelope"></i> Send Email
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 GitFrame CLI. All rights reserved. Created by hkjang.</div>
+        <div style="font-size: 0.8rem; color: var(--text-dim);">
+          Contact: <a href="mailto:gagagiga@naver.com" style="color: var(--accent-cyan);">gagagiga@naver.com</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>
