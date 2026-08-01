@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
   <!-- Primary Meta Tags -->
   <title>GitFrame CLI — Automated Browser Testing & Demo Video Generator</title>
   <meta name="title" content="GitFrame CLI — Automated Browser Testing & Demo Video Generator">
-  <meta name="description" content="웹 프로젝트 자동 빌드·실행부터 Playwright 시나리오 검증, FFmpeg MP4 영상/한글 자막 컴파일, 진단 리포트까지 원스톱 패키징하는 개발자용 CLI 도구입니다.">
+  <meta name="description" content="GitFrame is a developer CLI tool that automatically builds and runs web projects, verifies browser behavior via Playwright scenarios, and packages demo videos (MP4), subtitles (SRT), and HTML diagnostic reports.">
   <meta name="keywords" content="GitFrame, Playwright, FFmpeg, CLI, E2E Testing, Demo Video Generator, Web Automation, Developer Tools, Open Source, Node.js">
   <meta name="author" content="hkjang (gagagiga@naver.com)">
   <link rel="canonical" href="https://hkjang.github.io/GitFrame/">
@@ -16,7 +16,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://hkjang.github.io/GitFrame/">
   <meta property="og:title" content="GitFrame CLI — Automated Browser Testing & Demo Video Generator">
-  <meta property="og:description" content="웹 프로젝트를 자동으로 빌드·실행하고, YAML 시나리오에 따라 브라우저 동작을 검증한 뒤, 고화질 데모 영상(MP4), 한글 자막(SRT), HTML 검증 리포트로 패키징합니다.">
+  <meta property="og:description" content="Automatically build and run web projects, verify browser behavior via YAML scenarios, and package results into demo videos (MP4), subtitles (SRT), and HTML verification reports.">
   <meta property="og:image" content="https://raw.githubusercontent.com/hkjang/GitFrame/main/docs/assets/hero-banner.jpg">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:locale:alternate" content="en_US">
@@ -68,26 +68,26 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "GitFrame CLIEnterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform?",
+        "name": "What is GitFrame CLI?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "GitFrameEnterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform, YAMLEnterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Playwright Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform, Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform MP4 Enterprise Telemetry &amp; System Platform, SRT Enterprise Telemetry &amp; System Platform, HTML Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform CLI Enterprise Telemetry &amp; System Platform."
+          "text": "GitFrame is a developer CLI tool that automatically builds and runs web projects, verifies behavior via Playwright headless browser per YAML scenarios, and packages the results into MP4 videos, SRT subtitles, and HTML diagnostic reports."
         }
       },
       {
         "@type": "Question",
-        "name": "Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform?",
+        "name": "What project languages and frameworks are supported?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Node.js (Vite, Next.js, Express), Python (FastAPI, Django, Flask), Go, Java (Spring Boot), Docker Compose Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform HTML Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform."
+          "text": "Supports auto-detection and execution of Node.js (Vite, Next.js, Express), Python (FastAPI, Django, Flask), Go, Java (Spring Boot), Docker Compose, and static HTML web services."
         }
       },
       {
         "@type": "Question",
-        "name": "Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform/WSL Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform?",
+        "name": "Does it work on Linux/WSL environments without a display server?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Enterprise Telemetry &amp; System Platform. Playwright Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform FFmpegEnterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform CLI Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform 100% Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform."
+          "text": "Yes. Using Playwright headless browser and system FFmpeg, 100% video rendering and verification completes in CLI terminal environments without a graphical display server."
         }
       }
     ]
@@ -119,7 +119,7 @@
         var lang = btn.getAttribute('data-lang') || (btn.textContent || '').trim().toLowerCase();
         if (lang.indexOf('en') !== -1) {
           localStorage.setItem(SAVED_KEY, 'en');
-        } else if (lang.indexOf('ko') !== -1 || lang.indexOf('Enterprise Telemetry &amp; System Platform') !== -1) {
+        } else if (lang.indexOf('ko') !== -1) {
           localStorage.setItem(SAVED_KEY, 'ko');
         }
       });
@@ -142,14 +142,14 @@
         <ul class="nav-links">
           <li><a href="#features" data-i18n="navFeatures">Features</a></li>
           <li><a href="#pipeline" data-i18n="navPipeline">Pipeline</a></li>
-          <li><a href="#demos" data-i18n="navDemos">Demo</a></li>
+          <li><a href="#demos" data-i18n="navDemos">Demos</a></li>
           <li><a href="#quickstart" data-i18n="navQuickstart">Quickstart</a></li>
-          <li><a href="#cli" data-i18n="navCli">Enterprise Telemetry &amp; System Platform</a></li>
+          <li><a href="#cli" data-i18n="navCli">Commands</a></li>
           <li><a href="#faq" data-i18n="navFaq">FAQ</a></li>
         </ul>
       </nav>
 
-      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="메뉴 열기/닫기">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open/Close Menu">
           <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
         </button>
       <div class="nav-actions">
@@ -173,25 +173,25 @@
         <div class="hero-content">
           <div class="badge">
             <span class="badge-dot"></span>
-            <span data-i18n="badgeText">🎬 Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform CLI</span>
+            <span data-i18n="badgeText">🎬 Automated Video Verification CLI for Developers</span>
           </div>
 
           <h1 class="hero-title" data-i18n="heroTitle">
-            Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform <span class="gradient-text">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</span>
+            From code execution to HD demo video packaging — <span class="gradient-text">with a single command</span>
           </h1>
 
           <p class="hero-subtitle" data-i18n="heroSubtitle">
-            GitFrameEnterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform·Enterprise Telemetry &amp; System Platform, YAML Enterprise Telemetry &amp; System Platform Playwright Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform MP4 Enterprise Telemetry &amp; System Platform, SRT Enterprise Telemetry &amp; System Platform/Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform, HTML Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform CLI Enterprise Telemetry &amp; System Platform.
+            GitFrame automatically builds and runs web projects, verifies Playwright browser behavior via YAML scenarios, and auto-packages the results into MP4 videos, SRT subtitles, and HTML diagnostic reports.
           </p>
 
           <div class="hero-cta">
             <a href="#quickstart" class="btn-primary">
               <i class="fas fa-rocket"></i>
-              <span data-i18n="btnQuickStart">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</span>
+              <span data-i18n="btnQuickStart">Quick Start</span>
             </a>
             <a href="#demos" class="btn-secondary">
               <i class="fas fa-play-circle"></i>
-              <span data-i18n="btnWatchDemos">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</span>
+              <span data-i18n="btnWatchDemos">Watch Demos</span>
             </a>
           </div>
 
@@ -211,7 +211,7 @@
                   <span class="cmd-prompt">$</span>
                   <span class="cmd-text">npx gitframe render --output output</span>
                 </div>
-                <button class="copy-btn" data-target="hero-cmd-text"><i class="far fa-copy"></i> Enterprise Telemetry &amp; System Platform</button>
+                <button class="copy-btn" data-target="hero-cmd-text"><i class="far fa-copy"></i> Copy</button>
               </div>
               <div id="hero-cmd-text" style="display:none;">npx gitframe render --output output</div>
               <div style="color: #9CA3AF; font-size: 0.85rem;">
@@ -239,18 +239,18 @@
       <div class="container">
         <div class="section-header">
           <div class="badge">KEY FEATURES</div>
-          <h2 class="section-title" data-i18n="secFeaturesTitle">Enterprise Telemetry &amp; System Platform <span class="gradient-text">GitFrame</span>Enterprise Telemetry &amp; System Platform?</h2>
-          <p class="section-desc" data-i18n="secFeaturesDesc">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform.</p>
+          <h2 class="section-title" data-i18n="secFeaturesTitle">Why <span class="gradient-text">GitFrame</span>?</h2>
+          <p class="section-desc" data-i18n="secFeaturesDesc">Dramatically reduces the valuable time spent on project verification and demo video production.</p>
         </div>
 
         <div class="features-grid">
           <!-- Feature 1 -->
           <div class="feature-card">
             <div class="feature-icon"><i class="fas fa-magic"></i></div>
-            <h3 class="feature-title lang-content-ko">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</h3>
+            <h3 class="feature-title lang-content-en">Auto Project Detection</h3>
             <h3 class="feature-title lang-content-en" style="display:none;">Auto Project Detection</h3>
-            <p class="feature-body lang-content-ko">
-              Node.js, Python, Go, Java, Docker Compose Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform.
+            <p class="feature-body lang-content-en">
+              Automatically identifies project languages and frameworks including Node.js, Python, Go, Java, and Docker Compose to recommend optimal build and port serving commands.
             </p>
             <p class="feature-body lang-content-en" style="display:none;">
               Automatically detects Node.js, Python, Go, Java, Docker Compose, and static web apps, suggesting optimal build and port configurations.
@@ -260,10 +260,10 @@
           <!-- Feature 2 -->
           <div class="feature-card">
             <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-            <h3 class="feature-title lang-content-ko">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</h3>
+            <h3 class="feature-title lang-content-en">Isolated Workspace</h3>
             <h3 class="feature-title lang-content-en" style="display:none;">Isolated Sandbox Execution</h3>
-            <p class="feature-body lang-content-ko">
-              `/tmp` Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform.
+            <p class="feature-body lang-content-en">
+              Copies the original project into a `/tmp` isolated sandbox for safe building and verification, with zero impact on local source files.
             </p>
             <p class="feature-body lang-content-en" style="display:none;">
               Clones the project into a temporary isolated workspace (`/tmp`), executing clean builds without modifying your local source tree.
@@ -273,10 +273,10 @@
           <!-- Feature 3 -->
           <div class="feature-card">
             <div class="feature-icon"><i class="fas fa-vial"></i></div>
-            <h3 class="feature-title lang-content-ko">Playwright Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</h3>
+            <h3 class="feature-title lang-content-en">Playwright Scenario Verification</h3>
             <h3 class="feature-title lang-content-en" style="display:none;">Playwright Browser Automation</h3>
-            <p class="feature-body lang-content-ko">
-              YAMLEnterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform, Enterprise Telemetry &amp; System Platform, Enterprise Telemetry &amp; System Platform, Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform.
+            <p class="feature-body lang-content-en">
+              Simultaneously verifies click, navigation, input, and scroll actions in a high-resolution headless browser per simple YAML scenarios while recording the screen in real time.
             </p>
             <p class="feature-body lang-content-en" style="display:none;">
               Executes clicks, navigations, inputs, and scroll events via YAML scenario definitions while recording high-resolution browser frames.
@@ -286,10 +286,10 @@
           <!-- Feature 4 -->
           <div class="feature-card">
             <div class="feature-icon"><i class="fas fa-film"></i></div>
-            <h3 class="feature-title lang-content-ko">FFmpeg Enterprise Telemetry &amp; System Platform & Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</h3>
+            <h3 class="feature-title lang-content-en">FFmpeg Video & Subtitle Pipeline</h3>
             <h3 class="feature-title lang-content-en" style="display:none;">FFmpeg & SRT Subtitle Compiler</h3>
-            <p class="feature-body lang-content-ko">
-              Enterprise Telemetry &amp; System Platform stepEnterprise Telemetry &amp; System Platform caption Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform/Enterprise Telemetry &amp; System Platform SRT Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform, Enterprise Telemetry &amp; System Platform/Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform 1440x900 MP4/GIFEnterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform.
+            <p class="feature-body lang-content-en">
+              Auto-converts scenario step captions into SRT subtitles and renders intro/outro cards with browser recordings into 1440x900 MP4/GIF.
             </p>
             <p class="feature-body lang-content-en" style="display:none;">
               Compiles step captions into SRT subtitles and merges intro/outro title cards with recorded WebM into high-quality MP4 and GIF formats.
@@ -299,10 +299,10 @@
           <!-- Feature 5 -->
           <div class="feature-card">
             <div class="feature-icon"><i class="fas fa-file-alt"></i></div>
-            <h3 class="feature-title lang-content-ko">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</h3>
+            <h3 class="feature-title lang-content-en">Integrated Diagnostic Report Packaging</h3>
             <h3 class="feature-title lang-content-en" style="display:none;">Rich Diagnostic Artifacts</h3>
-            <p class="feature-body lang-content-ko">
-              HTML Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform, Playwright Trace ZIP, Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform PNG, Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform JSON Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform `output` Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform.
+            <p class="feature-body lang-content-en">
+              Outputs HTML interactive reports, Playwright Trace ZIPs, representative thumbnail PNGs, screenshots, and verification JSON results into a single `output` folder.
             </p>
             <p class="feature-body lang-content-en" style="display:none;">
               Generates an all-in-one diagnostic package containing HTML reports, Playwright Trace ZIP, video thumbnails, screenshots, and JSON specs.
@@ -312,10 +312,10 @@
           <!-- Feature 6 -->
           <div class="feature-card">
             <div class="feature-icon"><i class="fas fa-globe"></i></div>
-            <h3 class="feature-title lang-content-ko">Enterprise Telemetry &amp; System Platform Git Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</h3>
+            <h3 class="feature-title lang-content-en">One-Stop Git Repo Processing</h3>
             <h3 class="feature-title lang-content-en" style="display:none;">One-Stop Git Render</h3>
-            <p class="feature-body lang-content-ko">
-              `gitframe create <git-url>` Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Git Enterprise Telemetry &amp; System Platform CloneEnterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform, Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform, Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform.
+            <p class="feature-body lang-content-en">
+              Clone remote Git repos, build, execute scenarios, and package videos — all in one step with `gitframe create <git-url>`.
             </p>
             <p class="feature-body lang-content-en" style="display:none;">
               Run `gitframe create <git-url>` to automatically clone remote repos, build, execute scenario playbacks, and generate videos seamlessly.
@@ -330,48 +330,48 @@
       <div class="container">
         <div class="section-header">
           <div class="badge">AUTOMATED PIPELINE</div>
-          <h2 class="section-title" data-i18n="secPipelineTitle">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform <span class="gradient-text">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</span></h2>
-          <p class="section-desc" data-i18n="secPipelineDesc">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform.</p>
+          <h2 class="section-title" data-i18n="secPipelineTitle">Fully Automated <span class="gradient-text">Rendering Pipeline</span></h2>
+          <p class="section-desc" data-i18n="secPipelineDesc">Safely handles everything from build to final video composition in an isolated workspace.</p>
         </div>
 
         <div class="pipeline-container">
           <div class="pipeline-step">
             <span class="step-num">1</span>
-            <h4 class="step-title lang-content-ko">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</h4>
+            <h4 class="step-title lang-content-en">Detect & Copy</h4>
             <h4 class="step-title lang-content-en" style="display:none;">Detect & Clone</h4>
-            <p class="step-desc lang-content-ko">Enterprise Telemetry &amp; System Platform/Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform `/tmp` Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</p>
+            <p class="step-desc lang-content-en">Language/port detection and `/tmp` isolated workspace copy</p>
             <p class="step-desc lang-content-en" style="display:none;">Detect stack & clone to temporary workspace</p>
           </div>
 
           <div class="pipeline-step">
             <span class="step-num">2</span>
-            <h4 class="step-title lang-content-ko">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</h4>
+            <h4 class="step-title lang-content-en">Sandbox Launch</h4>
             <h4 class="step-title lang-content-en" style="display:none;">Build & Start</h4>
-            <p class="step-desc lang-content-ko">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform, Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</p>
+            <p class="step-desc lang-content-en">Dependency installation, build execution, and health check wait</p>
             <p class="step-desc lang-content-en" style="display:none;">Install deps, build, launch server & healthcheck</p>
           </div>
 
           <div class="pipeline-step">
             <span class="step-num">3</span>
-            <h4 class="step-title lang-content-ko">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</h4>
+            <h4 class="step-title lang-content-en">Scenario Playback</h4>
             <h4 class="step-title lang-content-en" style="display:none;">Playwright Playback</h4>
-            <p class="step-desc lang-content-ko">Playwright Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</p>
+            <p class="step-desc lang-content-en">Playwright headless browser testing and recording</p>
             <p class="step-desc lang-content-en" style="display:none;">Headless browser scenario playback & screen record</p>
           </div>
 
           <div class="pipeline-step">
             <span class="step-num">4</span>
-            <h4 class="step-title lang-content-ko">Enterprise Telemetry &amp; System Platform & Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</h4>
+            <h4 class="step-title lang-content-en">Video & Subtitle Rendering</h4>
             <h4 class="step-title lang-content-en" style="display:none;">FFmpeg Compositing</h4>
-            <p class="step-desc lang-content-ko">WebM → MP4 Enterprise Telemetry &amp; System Platform/Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform SRT Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</p>
+            <p class="step-desc lang-content-en">WebM → MP4 intro/outro merging and SRT subtitle generation</p>
             <p class="step-desc lang-content-en" style="display:none;">WebM to MP4, intro/outro merge & SRT subtitles</p>
           </div>
 
           <div class="pipeline-step">
             <span class="step-num">5</span>
-            <h4 class="step-title lang-content-ko">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</h4>
+            <h4 class="step-title lang-content-en">Artifact Packaging</h4>
             <h4 class="step-title lang-content-en" style="display:none;">Artifact Packaging</h4>
-            <p class="step-desc lang-content-ko">HTML Enterprise Telemetry &amp; System Platform, Trace.zip, Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</p>
+            <p class="step-desc lang-content-en">HTML report, Trace.zip, thumbnail final packaging</p>
             <p class="step-desc lang-content-en" style="display:none;">Packaging HTML report, Trace ZIP & thumbnails</p>
           </div>
         </div>
@@ -383,8 +383,8 @@
       <div class="container">
         <div class="section-header">
           <div class="badge">DEMO SHOWCASE</div>
-          <h2 class="section-title" data-i18n="secDemosTitle">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform <span class="gradient-text">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</span></h2>
-          <p class="section-desc" data-i18n="secDemosDesc">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform GitFrame CLI Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform.</p>
+          <h2 class="section-title" data-i18n="secDemosTitle">Actual Generated <span class="gradient-text">Demo Video Examples</span></h2>
+          <p class="section-desc" data-i18n="secDemosDesc">All videos were auto-generated with a single GitFrame CLI command — no screen capture software needed.</p>
         </div>
 
         <div class="demo-grid">
@@ -399,11 +399,11 @@
             <div class="demo-content">
               <span class="demo-tag">Go / Database Operations</span>
               <h3 class="demo-title">SQLON Operations Platform</h3>
-              <p class="demo-desc lang-content-ko">AI Database Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform — 18Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform (Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform, Enterprise Telemetry &amp; System Platform, DBA, Text2SQL Enterprise Telemetry &amp; System Platform)</p>
+              <p class="demo-desc lang-content-en">AI Database Operations Platform — 18-screen auto-cycling playback (Session Management, Workloads, DBA, Text2SQL, etc.)</p>
               <p class="demo-desc lang-content-en" style="display:none;">AI Database Operations Platform — Automated 18 screens playback (Session, Workloads, Security, Text2SQL)</p>
               <div class="demo-footer">
                 <span class="demo-specs"><i class="fas fa-video"></i> 1440×900 / 30fps / SRT</span>
-                <a href="https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/sqlon-demo.mp4" target="_blank" class="btn-watch">▶ MP4 Enterprise Telemetry &amp; System Platform</a>
+                <a href="https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/sqlon-demo.mp4" target="_blank" class="btn-watch">▶ Download MP4</a>
               </div>
             </div>
           </div>
@@ -419,11 +419,11 @@
             <div class="demo-content">
               <span class="demo-tag">PostgreSQL / NL2SQL Platform</span>
               <h3 class="demo-title">JAMYPG Operations Platform</h3>
-              <p class="demo-desc lang-content-ko">PostgreSQL NL2SQL Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform — DBA Enterprise Telemetry &amp; System Platform, OpenMetadata, Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</p>
+              <p class="demo-desc lang-content-en">PostgreSQL NL2SQL Operations Platform — DBA Copilot, OpenMetadata, quality gate scenario verification</p>
               <p class="demo-desc lang-content-en" style="display:none;">PostgreSQL NL2SQL Operations — DBA Copilot, OpenMetadata & Quality Gates scenario validation</p>
               <div class="demo-footer">
                 <span class="demo-specs"><i class="fas fa-video"></i> 1440×900 / 30fps / SRT</span>
-                <a href="https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/jamypg-demo.mp4" target="_blank" class="btn-watch">▶ MP4 Enterprise Telemetry &amp; System Platform</a>
+                <a href="https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/jamypg-demo.mp4" target="_blank" class="btn-watch">▶ Download MP4</a>
               </div>
             </div>
           </div>
@@ -439,11 +439,11 @@
             <div class="demo-content">
               <span class="demo-tag">AI Proxy Gateway</span>
               <h3 class="demo-title">Vibe Coders Gateway</h3>
-              <p class="demo-desc lang-content-ko">AI Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform — MCP Enterprise Telemetry &amp; System Platform, Red Team Enterprise Telemetry &amp; System Platform, Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</p>
+              <p class="demo-desc lang-content-en">AI Coding Proxy Gateway — MCP routing, Red Team security, real-time cost dashboard verification demo</p>
               <p class="demo-desc lang-content-en" style="display:none;">AI Coding Proxy Gateway — MCP Routing, Red Team Security & Real-time Cost Dashboard demo</p>
               <div class="demo-footer">
                 <span class="demo-specs"><i class="fas fa-video"></i> 1440×900 / 30fps / SRT</span>
-                <a href="https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/vibe-coders-demo.mp4" target="_blank" class="btn-watch">▶ MP4 Enterprise Telemetry &amp; System Platform</a>
+                <a href="https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/vibe-coders-demo.mp4" target="_blank" class="btn-watch">▶ Download MP4</a>
               </div>
             </div>
           </div>
@@ -456,8 +456,8 @@
       <div class="container">
         <div class="section-header">
           <div class="badge">QUICK START</div>
-          <h2 class="section-title" data-i18n="secQuickstartTitle">3Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform <span class="gradient-text">GitFrame</span></h2>
-          <p class="section-desc" data-i18n="secQuickstartDesc">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform YAML Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform.</p>
+          <h2 class="section-title" data-i18n="secQuickstartTitle">Get Started with <span class="gradient-text">GitFrame</span> in 3 Minutes</h2>
+          <p class="section-desc" data-i18n="secQuickstartDesc">Easy commands and YAML configuration guide you can apply to existing projects right away.</p>
         </div>
 
         <div class="quickstart-wrapper">
@@ -470,29 +470,29 @@
 
           <!-- Tab 1 -->
           <div class="tab-pane active" id="tab-step1">
-            <h4 style="margin-bottom: 12px; font-size: 1.1rem;" class="lang-content-ko">1. Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform GitFrame Enterprise Telemetry &amp; System Platform</h4>
+            <h4 style="margin-bottom: 12px; font-size: 1.1rem;" class="lang-content-en">1. Initialize GitFrame in an Existing Web Project</h4>
             <h4 style="margin-bottom: 12px; font-size: 1.1rem; display:none;" class="lang-content-en">1. Initialize GitFrame in your project</h4>
             <div class="code-box">
               <div class="code-header">
                 <span>Terminal</span>
-                <button class="copy-btn" data-target="code-init"><i class="far fa-copy"></i> Enterprise Telemetry &amp; System Platform</button>
+                <button class="copy-btn" data-target="code-init"><i class="far fa-copy"></i> Copy</button>
               </div>
               <pre id="code-init">cd /path/to/my-web-project
 npx gitframe init</pre>
             </div>
-            <p style="margin-top: 12px; font-size: 0.9rem; color: var(--text-muted);" class="lang-content-ko">
-              Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform `.gitframe/gitframe.yaml` Enterprise Telemetry &amp; System Platform `.gitframe/demo.yaml` Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform.
+            <p style="margin-top: 12px; font-size: 0.9rem; color: var(--text-muted);" class="lang-content-en">
+              Running this command automatically generates default sample files `.gitframe/gitframe.yaml` and `.gitframe/demo.yaml`.
             </p>
           </div>
 
           <!-- Tab 2 -->
           <div class="tab-pane" id="tab-step2">
-            <h4 style="margin-bottom: 12px; font-size: 1.1rem;" class="lang-content-ko">2. Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform (.gitframe/gitframe.yaml)</h4>
+            <h4 style="margin-bottom: 12px; font-size: 1.1rem;" class="lang-content-en">2. Project Configuration File (.gitframe/gitframe.yaml)</h4>
             <h4 style="margin-bottom: 12px; font-size: 1.1rem; display:none;" class="lang-content-en">2. Configure (.gitframe/gitframe.yaml)</h4>
             <div class="code-box">
               <div class="code-header">
                 <span>.gitframe/gitframe.yaml</span>
-                <button class="copy-btn" data-target="code-yaml"><i class="far fa-copy"></i> Enterprise Telemetry &amp; System Platform</button>
+                <button class="copy-btn" data-target="code-yaml"><i class="far fa-copy"></i> Copy</button>
               </div>
               <pre id="code-yaml">project:
   language: "go"         # node | python | go | java | compose | static
@@ -516,19 +516,19 @@ captions: true</pre>
 
           <!-- Tab 3 -->
           <div class="tab-pane" id="tab-step3">
-            <h4 style="margin-bottom: 12px; font-size: 1.1rem;" class="lang-content-ko">3. Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform (.gitframe/demo.yaml)</h4>
+            <h4 style="margin-bottom: 12px; font-size: 1.1rem;" class="lang-content-en">3. Browser Test Scenario Definition (.gitframe/demo.yaml)</h4>
             <h4 style="margin-bottom: 12px; font-size: 1.1rem; display:none;" class="lang-content-en">3. Define Scenario (.gitframe/demo.yaml)</h4>
             <div class="code-box">
               <div class="code-header">
                 <span>.gitframe/demo.yaml</span>
-                <button class="copy-btn" data-target="code-demo-yaml"><i class="far fa-copy"></i> Enterprise Telemetry &amp; System Platform</button>
+                <button class="copy-btn" data-target="code-demo-yaml"><i class="far fa-copy"></i> Copy</button>
               </div>
               <pre id="code-demo-yaml">start_url: "http://localhost:8080"
 steps:
   - id: step-1
     action: goto
     url: "/dashboard"
-    caption: "Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform"
+    caption: "Navigate to main dashboard"
 
   - id: step-2
     action: pause
@@ -538,29 +538,29 @@ steps:
     action: click
     selector:
       role: "button"
-      name: "Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform"
-    caption: "Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform"
+      name: "Load Data"
+    caption: "Click the load data button"
 
   - id: step-4
     action: screenshot
     name: "dashboard_loaded"
-    caption: "Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform"</pre>
+    caption: "Dashboard verification complete"</pre>
             </div>
           </div>
 
           <!-- Tab 4 -->
           <div class="tab-pane" id="tab-step4">
-            <h4 style="margin-bottom: 12px; font-size: 1.1rem;" class="lang-content-ko">4. Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</h4>
+            <h4 style="margin-bottom: 12px; font-size: 1.1rem;" class="lang-content-en">4. Run Video Pipeline</h4>
             <h4 style="margin-bottom: 12px; font-size: 1.1rem; display:none;" class="lang-content-en">4. Execute Video Pipeline</h4>
             <div class="code-box">
               <div class="code-header">
                 <span>Terminal</span>
-                <button class="copy-btn" data-target="code-render"><i class="far fa-copy"></i> Enterprise Telemetry &amp; System Platform</button>
+                <button class="copy-btn" data-target="code-render"><i class="far fa-copy"></i> Copy</button>
               </div>
               <pre id="code-render">npx gitframe render --output output</pre>
             </div>
-            <p style="margin-top: 12px; font-size: 0.9rem; color: var(--accent-emerald);" class="lang-content-ko">
-              ✔ Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform output/ Enterprise Telemetry &amp; System Platform *.mp4, subtitles.srt, report.html Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform.
+            <p style="margin-top: 12px; font-size: 0.9rem; color: var(--accent-emerald);" class="lang-content-en">
+              ✔ After rendering, check *.mp4, subtitles.srt, and report.html results in the output/ folder.
             </p>
           </div>
         </div>
@@ -572,44 +572,44 @@ steps:
       <div class="container">
         <div class="section-header">
           <div class="badge">CLI CHEATSHEET</div>
-          <h2 class="section-title" data-i18n="secCliTitle">Enterprise Telemetry &amp; System Platform <span class="gradient-text">CLI Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</span></h2>
-          <p class="section-desc" data-i18n="secCliDesc">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform.</p>
+          <h2 class="section-title" data-i18n="secCliTitle">Intuitive <span class="gradient-text">CLI Command System</span></h2>
+          <p class="section-desc" data-i18n="secCliDesc">Easily control all operations needed in your development workflow.</p>
         </div>
 
         <div class="cli-grid">
           <div class="cli-card">
             <div class="cli-cmd">gitframe init</div>
-            <p class="cli-desc lang-content-ko">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform `.gitframe` Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</p>
+            <p class="cli-desc lang-content-en">Generate `.gitframe` config and sample scenario files in the current directory</p>
             <p class="cli-desc lang-content-en" style="display:none;">Initialize `.gitframe` config and sample scenario files</p>
           </div>
 
           <div class="cli-card">
             <div class="cli-cmd">gitframe inspect</div>
-            <p class="cli-desc lang-content-ko">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform, Enterprise Telemetry &amp; System Platform/Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</p>
+            <p class="cli-desc lang-content-en">Auto-detect project language, build/run commands, and serving port</p>
             <p class="cli-desc lang-content-en" style="display:none;">Detect project stack, build commands, and listening ports</p>
           </div>
 
           <div class="cli-card">
             <div class="cli-cmd">gitframe test</div>
-            <p class="cli-desc lang-content-ko">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform (Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform)</p>
+            <p class="cli-desc lang-content-en">Quick scenario verification without video rendering (for development testing)</p>
             <p class="cli-desc lang-content-en" style="display:none;">Fast scenario validation without rendering video</p>
           </div>
 
           <div class="cli-card">
             <div class="cli-cmd">gitframe render</div>
-            <p class="cli-desc lang-content-ko">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform → Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform → FFmpeg Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</p>
+            <p class="cli-desc lang-content-en">Isolated build → Scenario recording → FFmpeg composited video full pipeline execution</p>
             <p class="cli-desc lang-content-en" style="display:none;">Full pipeline: Sandbox build → record → FFmpeg MP4 merge</p>
           </div>
 
           <div class="cli-card">
             <div class="cli-cmd">gitframe create &lt;url&gt;</div>
-            <p class="cli-desc lang-content-ko">Enterprise Telemetry &amp; System Platform Git Enterprise Telemetry &amp; System Platform CloneEnterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</p>
+            <p class="cli-desc lang-content-en">Clone remote Git repo for one-stop full verification and video packaging</p>
             <p class="cli-desc lang-content-en" style="display:none;">Clone remote Git repository and run full pipeline end-to-end</p>
           </div>
 
           <div class="cli-card">
             <div class="cli-cmd">gitframe doctor</div>
-            <p class="cli-desc lang-content-ko">Node, Playwright, FFmpeg Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform</p>
+            <p class="cli-desc lang-content-en">Diagnose installation status of required dependencies: Node, Playwright, FFmpeg, etc.</p>
             <p class="cli-desc lang-content-en" style="display:none;">Check installation status of Node, Playwright, FFmpeg</p>
           </div>
         </div>
@@ -621,20 +621,20 @@ steps:
       <div class="container">
         <div class="section-header">
           <div class="badge">FAQ</div>
-          <h2 class="section-title" data-i18n="secFaqTitle">Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform <span class="gradient-text">Enterprise Telemetry &amp; System Platform (FAQ)</span></h2>
-          <p class="section-desc" data-i18n="secFaqDesc">GitFrameEnterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform.</p>
+          <h2 class="section-title" data-i18n="secFaqTitle">Frequently Asked <span class="gradient-text">Questions (FAQ)</span></h2>
+          <p class="section-desc" data-i18n="secFaqDesc">Learn about GitFrame usage and technical specifications.</p>
         </div>
 
         <div class="faq-list">
           <div class="faq-item active">
             <button class="faq-question">
-              <span class="lang-content-ko">Q1. GitFrame CLIEnterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform?</span>
+              <span class="lang-content-en">Q1. What is GitFrame CLI used for?</span>
               <span class="lang-content-en" style="display:none;">Q1. What is the primary purpose of GitFrame CLI?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </button>
             <div class="faq-answer">
-              <p class="lang-content-ko">
-                GitFrameEnterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform(E2E Enterprise Telemetry &amp; System Platform)Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform. Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform YAML Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform.
+              <p class="lang-content-en">
+                GitFrame is a tool for automating web application development verification (E2E testing) and demo video generation. Simply define YAML scenarios to get consistent-quality demo videos and verification reports without manual screen capture.
               </p>
               <p class="lang-content-en" style="display:none;">
                 GitFrame automates web app E2E verification and demo video generation. Instead of manual screen recording, you define YAML scenarios to automatically render consistent demo videos and diagnostic reports.
@@ -644,13 +644,13 @@ steps:
 
           <div class="faq-item">
             <button class="faq-question">
-              <span class="lang-content-ko">Q2. Enterprise Telemetry &amp; System Platform/WSLEnterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform?</span>
+              <span class="lang-content-en">Q2. Can videos render on Linux/WSL or environments without a display server?</span>
               <span class="lang-content-en" style="display:none;">Q2. Does video rendering work on Linux/WSL without display servers?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </button>
             <div class="faq-answer">
-              <p class="lang-content-ko">
-                Enterprise Telemetry &amp; System Platform! GitFrameEnterprise Telemetry &amp; System Platform PlaywrightEnterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform(Headless) Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform FFmpeg Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform. GUI Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform CI/CD Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform 100% Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform.
+              <p class="lang-content-en">
+                Yes! GitFrame uses Playwright headless browser screen recording and system FFmpeg libraries. It works 100% correctly on Linux servers without GUI display servers and CI/CD pipeline environments.
               </p>
               <p class="lang-content-en" style="display:none;">
                 Yes! GitFrame utilizes Playwright's headless browser recording and system FFmpeg binaries. It runs 100% seamlessly in Linux servers or CI/CD pipelines without display servers.
@@ -660,13 +660,13 @@ steps:
 
           <div class="faq-item">
             <button class="faq-question">
-              <span class="lang-content-ko">Q3. Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform?</span>
+              <span class="lang-content-en">Q3. Are subtitles automatically included in videos?</span>
               <span class="lang-content-en" style="display:none;">Q3. Are subtitles automatically rendered into the video?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </button>
             <div class="faq-answer">
-              <p class="lang-content-ko">
-                Enterprise Telemetry &amp; System Platform. Enterprise Telemetry &amp; System Platform step Enterprise Telemetry &amp; System Platform `caption` Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform `subtitles.srt` Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform.
+              <p class="lang-content-en">
+                Yes. Description text in the scenario step `caption` field is matched to timestamps and auto-compiled into a `subtitles.srt` subtitle file.
               </p>
               <p class="lang-content-en" style="display:none;">
                 Yes. The `caption` fields defined in scenario steps are timestamped and compiled into `subtitles.srt` files automatically.
@@ -676,13 +676,13 @@ steps:
 
           <div class="faq-item">
             <button class="faq-question">
-              <span class="lang-content-ko">Q4. Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform?</span>
+              <span class="lang-content-en">Q4. What is the open-source licensing policy?</span>
               <span class="lang-content-en" style="display:none;">Q4. What is the open source licensing policy?</span>
               <i class="fas fa-chevron-down faq-icon"></i>
             </button>
             <div class="faq-answer">
-              <p class="lang-content-ko">
-                GitFrameEnterprise Telemetry &amp; System Platform Apache 2.0 Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform. Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform, Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform.
+              <p class="lang-content-en">
+                GitFrame is an open-source project under the Apache 2.0 license. You are free to use, modify, and distribute it.
               </p>
               <p class="lang-content-en" style="display:none;">
                 GitFrame is an open source project licensed under Apache 2.0. You are free to use, modify, and distribute it.
@@ -701,11 +701,11 @@ steps:
         <div>
           <div class="footer-brand">🎬 GitFrame CLI</div>
           <p class="footer-desc" data-i18n="footerTagline">
-            Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform, E2E Enterprise Telemetry &amp; System Platform, Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform CLI
+            Web project execution, E2E verification, and demo video rendering full pipeline automation CLI
           </p>
 
           <div class="footer-contact-box">
-            <span data-i18n="emailLabel">📧 Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform:</span>
+            <span data-i18n="emailLabel">📧 Email Inquiry:</span>
             <a href="mailto:gagagiga@naver.com" class="contact-mail-link">gagagiga@naver.com</a>
           </div>
         </div>
@@ -731,7 +731,7 @@ steps:
         <div class="footer-col">
           <h4>Contact Us</h4>
           <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px;" data-i18n="contactDesc">
-            Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform Enterprise Telemetry &amp; System Platform.
+            For product inquiries and collaboration proposals, please reach out via email below.
           </p>
           <a href="mailto:gagagiga@naver.com" class="btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;">
             <i class="far fa-envelope"></i> Send Email
@@ -750,6 +750,5 @@ steps:
 
   <!-- Script -->
   <script src="script.js"></script>
-<script>document.addEventListener("DOMContentLoaded", function() { if(typeof setLanguage === "function") setLanguage("en"); });</script>
 </body>
 </html>
