@@ -16,7 +16,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://hkjang.github.io/GitFrame/">
   <meta property="og:title" content="GitFrame CLI — Automated Browser Testing & Demo Video Generator">
-  <meta property="og:description" content="웹 프로젝트를 자동으로 빌드·실행하고, YAML 시나리오에 따라 브라우저 동작을 검증한 뒤, 고화질 데모 영상(MP4), 한글 자막(SRT), HTML 검증 리포트로 패키징합니다.">
+  <meta property="og:description" content="웹 프로젝트를 자동으로 빌드·실행하고, YAML 시나리오에 따라 브라우저 동작을 검증한 뒤, 고화질 Demo Video(MP4), 한글 자막(SRT), HTML 검증 리포트로 패키징합니다.">
   <meta property="og:image" content="https://raw.githubusercontent.com/hkjang/GitFrame/main/docs/assets/hero-banner.jpg">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:locale:alternate" content="en_US">
@@ -140,10 +140,10 @@
 
       <nav>
         <ul class="nav-links">
-          <li><a href="#features" data-i18n="navFeatures">핵심 기능</a></li>
-          <li><a href="#pipeline" data-i18n="navPipeline">작동 파이프라인</a></li>
-          <li><a href="#demos" data-i18n="navDemos">데모 영상</a></li>
-          <li><a href="#quickstart" data-i18n="navQuickstart">빠른 시작</a></li>
+          <li><a href="#features" data-i18n="navFeatures">Key Features</a></li>
+          <li><a href="#pipeline" data-i18n="navPipeline">Workflow Pipeline</a></li>
+          <li><a href="#demos" data-i18n="navDemos">Demo Video</a></li>
+          <li><a href="#quickstart" data-i18n="navQuickstart">Quickstart</a></li>
           <li><a href="#cli" data-i18n="navCli">명령어</a></li>
           <li><a href="#faq" data-i18n="navFaq">FAQ</a></li>
         </ul>
@@ -173,11 +173,11 @@
         <div class="hero-content">
           <div class="badge">
             <span class="badge-dot"></span>
-            <span data-i18n="badgeText">🎬 개발자를 위한 자동 비디오 검증 CLI</span>
+            <span data-i18n="badgeText">🎬 Automated Video Inspection CLI for Developers</span>
           </div>
 
           <h1 class="hero-title" data-i18n="heroTitle">
-            코드 실행부터 고화질 데모 영상 패키징까지 <span class="gradient-text">단 한 줄의 명령어로</span>
+            코드 실행부터 고화질 Demo Video 패키징까지 <span class="gradient-text">With a Single Command</span>
           </h1>
 
           <p class="hero-subtitle" data-i18n="heroSubtitle">
@@ -187,11 +187,11 @@
           <div class="hero-cta">
             <a href="#quickstart" class="btn-primary">
               <i class="fas fa-rocket"></i>
-              <span data-i18n="btnQuickStart">빠른 시작하기</span>
+              <span data-i18n="btnQuickStart">Quickstart</span>
             </a>
             <a href="#demos" class="btn-secondary">
               <i class="fas fa-play-circle"></i>
-              <span data-i18n="btnWatchDemos">데모 영상 둘러보기</span>
+              <span data-i18n="btnWatchDemos">Explore Demo Video</span>
             </a>
           </div>
 
@@ -211,7 +211,7 @@
                   <span class="cmd-prompt">$</span>
                   <span class="cmd-text">npx gitframe render --output output</span>
                 </div>
-                <button class="copy-btn" data-target="hero-cmd-text"><i class="far fa-copy"></i> 복사</button>
+                <button class="copy-btn" data-target="hero-cmd-text"><i class="far fa-copy"></i> Copy</button>
               </div>
               <div id="hero-cmd-text" style="display:none;">npx gitframe render --output output</div>
               <div style="color: #9CA3AF; font-size: 0.85rem;">
@@ -240,7 +240,7 @@
         <div class="section-header">
           <div class="badge">KEY FEATURES</div>
           <h2 class="section-title" data-i18n="secFeaturesTitle">왜 <span class="gradient-text">GitFrame</span>인가요?</h2>
-          <p class="section-desc" data-i18n="secFeaturesDesc">프로젝트 검증과 데모 영상 제작에 들어가는 귀중한 시간을 혁신적으로 줄여줍니다.</p>
+          <p class="section-desc" data-i18n="secFeaturesDesc">Innovatively reduces time spent on project validation and demo video production.</p>
         </div>
 
         <div class="features-grid">
@@ -263,7 +263,7 @@
             <h3 class="feature-title lang-content-ko">격리된 작업 공간</h3>
             <h3 class="feature-title lang-content-en" style="display:none;">Isolated Sandbox Execution</h3>
             <p class="feature-body lang-content-ko">
-              `/tmp` 임시 격리 공간에 원본 프로젝트를 복사하여 샌드박스 형태로 안전하게 빌드하고 검증하므로 로컬 원본 소스에 전혀 영향을 주지 않습니다.
+              `/tmp` 임시 격리 공간에 원본 프로젝트를 Copy하여 샌드박스 형태로 안전하게 빌드하고 검증하므로 로컬 원본 소스에 전혀 영향을 주지 않습니다.
             </p>
             <p class="feature-body lang-content-en" style="display:none;">
               Clones the project into a temporary isolated workspace (`/tmp`), executing clean builds without modifying your local source tree.
@@ -337,9 +337,9 @@
         <div class="pipeline-container">
           <div class="pipeline-step">
             <span class="step-num">1</span>
-            <h4 class="step-title lang-content-ko">감지 및 복사</h4>
+            <h4 class="step-title lang-content-ko">감지 및 Copy</h4>
             <h4 class="step-title lang-content-en" style="display:none;">Detect & Clone</h4>
-            <p class="step-desc lang-content-ko">언어/포트 감지 및 `/tmp` 격리 워크스페이스 복사</p>
+            <p class="step-desc lang-content-ko">언어/포트 감지 및 `/tmp` 격리 워크스페이스 Copy</p>
             <p class="step-desc lang-content-en" style="display:none;">Detect stack & clone to temporary workspace</p>
           </div>
 
@@ -383,7 +383,7 @@
       <div class="container">
         <div class="section-header">
           <div class="badge">DEMO SHOWCASE</div>
-          <h2 class="section-title" data-i18n="secDemosTitle">실제 생성된 <span class="gradient-text">데모 영상 사례</span></h2>
+          <h2 class="section-title" data-i18n="secDemosTitle">실제 생성된 <span class="gradient-text">Demo Video 사례</span></h2>
           <p class="section-desc" data-i18n="secDemosDesc">모든 영상은 화면 캡처 소프트웨어 없이 GitFrame CLI 명령어 하나로 자동 생성되었습니다.</p>
         </div>
 
@@ -403,7 +403,7 @@
               <p class="demo-desc lang-content-en" style="display:none;">AI Database Operations Platform — Automated 18 screens playback (Session, Workloads, Security, Text2SQL)</p>
               <div class="demo-footer">
                 <span class="demo-specs"><i class="fas fa-video"></i> 1440×900 / 30fps / SRT</span>
-                <a href="https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/sqlon-demo.mp4" target="_blank" class="btn-watch">▶ MP4 다운로드</a>
+                <a href="https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/sqlon-demo.mp4" target="_blank" class="btn-watch">▶ MP4 Download</a>
               </div>
             </div>
           </div>
@@ -423,7 +423,7 @@
               <p class="demo-desc lang-content-en" style="display:none;">PostgreSQL NL2SQL Operations — DBA Copilot, OpenMetadata & Quality Gates scenario validation</p>
               <div class="demo-footer">
                 <span class="demo-specs"><i class="fas fa-video"></i> 1440×900 / 30fps / SRT</span>
-                <a href="https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/jamypg-demo.mp4" target="_blank" class="btn-watch">▶ MP4 다운로드</a>
+                <a href="https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/jamypg-demo.mp4" target="_blank" class="btn-watch">▶ MP4 Download</a>
               </div>
             </div>
           </div>
@@ -443,7 +443,7 @@
               <p class="demo-desc lang-content-en" style="display:none;">AI Coding Proxy Gateway — MCP Routing, Red Team Security & Real-time Cost Dashboard demo</p>
               <div class="demo-footer">
                 <span class="demo-specs"><i class="fas fa-video"></i> 1440×900 / 30fps / SRT</span>
-                <a href="https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/vibe-coders-demo.mp4" target="_blank" class="btn-watch">▶ MP4 다운로드</a>
+                <a href="https://github.com/hkjang/GitFrame/raw/main/examples/demo-videos/vibe-coders-demo.mp4" target="_blank" class="btn-watch">▶ MP4 Download</a>
               </div>
             </div>
           </div>
@@ -475,7 +475,7 @@
             <div class="code-box">
               <div class="code-header">
                 <span>Terminal</span>
-                <button class="copy-btn" data-target="code-init"><i class="far fa-copy"></i> 복사</button>
+                <button class="copy-btn" data-target="code-init"><i class="far fa-copy"></i> Copy</button>
               </div>
               <pre id="code-init">cd /path/to/my-web-project
 npx gitframe init</pre>
@@ -492,7 +492,7 @@ npx gitframe init</pre>
             <div class="code-box">
               <div class="code-header">
                 <span>.gitframe/gitframe.yaml</span>
-                <button class="copy-btn" data-target="code-yaml"><i class="far fa-copy"></i> 복사</button>
+                <button class="copy-btn" data-target="code-yaml"><i class="far fa-copy"></i> Copy</button>
               </div>
               <pre id="code-yaml">project:
   language: "go"         # node | python | go | java | compose | static
@@ -521,7 +521,7 @@ captions: true</pre>
             <div class="code-box">
               <div class="code-header">
                 <span>.gitframe/demo.yaml</span>
-                <button class="copy-btn" data-target="code-demo-yaml"><i class="far fa-copy"></i> 복사</button>
+                <button class="copy-btn" data-target="code-demo-yaml"><i class="far fa-copy"></i> Copy</button>
               </div>
               <pre id="code-demo-yaml">start_url: "http://localhost:8080"
 steps:
@@ -555,7 +555,7 @@ steps:
             <div class="code-box">
               <div class="code-header">
                 <span>Terminal</span>
-                <button class="copy-btn" data-target="code-render"><i class="far fa-copy"></i> 복사</button>
+                <button class="copy-btn" data-target="code-render"><i class="far fa-copy"></i> Copy</button>
               </div>
               <pre id="code-render">npx gitframe render --output output</pre>
             </div>
@@ -634,7 +634,7 @@ steps:
             </button>
             <div class="faq-answer">
               <p class="lang-content-ko">
-                GitFrame은 웹 애플리케이션의 개발 검증(E2E 테스팅)과 시동 데모 비디오 생성을 자동화하기 위한 도구입니다. 화면 캡처 프로그램을 켜고 수동으로 조작하는 번거로움 없이 YAML 시나리오만 정의해 두면 언제든 동일한 품질의 데모 영상과 검증 리포트를 얻을 수 있습니다.
+                GitFrame은 웹 애플리케이션의 개발 검증(E2E 테스팅)과 시동 데모 비디오 생성을 자동화하기 위한 도구입니다. 화면 캡처 프로그램을 켜고 수동으로 조작하는 번거로움 없이 YAML 시나리오만 정의해 두면 언제든 동일한 품질의 Demo Video과 검증 리포트를 얻을 수 있습니다.
               </p>
               <p class="lang-content-en" style="display:none;">
                 GitFrame automates web app E2E verification and demo video generation. Instead of manual screen recording, you define YAML scenarios to automatically render consistent demo videos and diagnostic reports.
